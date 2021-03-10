@@ -1,0 +1,16 @@
+
+.item {
+    &:hover {
+        .item-details {
+            opacity: 1;
+        }
+    }
+}
+.item-details {
+    z-index: 1000;
+    opacity: 0;
+    width: 200px;
+    // position: absolute;
+    left: 105%;
+    transition: opacity 150ms ease-in-out;
+}

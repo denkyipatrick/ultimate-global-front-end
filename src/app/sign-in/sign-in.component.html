@@ -1,0 +1,26 @@
+
+
+<div>
+    <form [formGroup]="form" 
+        (ngSubmit)="signIn()"
+        class="mx-auto border-2" style="width: 500px;">
+        <mat-progress-bar *ngIf="isAuthenticating" mode="indeterminate"
+        ></mat-progress-bar>
+
+        <h1>Sign In</h1>
+        <span class="space-x-4">
+            <mat-form-field>
+                <mat-label>Username</mat-label>
+                <input matInput formControlName="username" />
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input matInput type="password" formControlName="password" />
+            </mat-form-field>
+        </span>
+
+        <div>
+            <button mat-button>Sign In</button>
+        </div>
+    </form>
+</div>

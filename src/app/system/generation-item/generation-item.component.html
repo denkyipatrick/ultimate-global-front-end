@@ -1,0 +1,31 @@
+
+<div style="margin: 1rem auto; width: 100px;"
+    class="item rounded-lg p-2 relative">
+    <a [href]="'distributors/' + distributor.username + '/generation/' + selectedStage">
+        <div class="text-black text-center">
+            <img src="../../assets/images/dp_2.png" class="block mx-auto" 
+                style="border-radius: 50%; width: 60px" />
+            <h3>{{distributor?.username}}</h3>
+            <p>{{distributor?.stage?.name}}</p>
+        </div>
+    </a>
+
+    <div class="item-details absolute top-0 left-full bg-gray-200 text-center p-2">
+        <p>{{distributor?.username}}</p>
+        <p>
+            {{distributor?.firstName || 'Some First Name'}} 
+            {{distributor?.lastName || 'Some Last Name'}}
+        </p>
+    </div>
+</div>
+
+<div class="">
+    <ul class="flex items-center justify-center space-x-8">
+        <li *ngFor="let downLine of distributor?.downLines">
+            <!-- <h4>{{downLine?.username}}</h4> -->
+            <app-generation-item [distributor]="downLine" 
+                [selectedStage]="selectedStage">
+            </app-generation-item>
+        </li>
+    </ul>
+</div>

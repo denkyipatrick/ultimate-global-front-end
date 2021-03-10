@@ -1,0 +1,42 @@
+
+<div>
+    <form [formGroup]="form" (ngSubmit)="addDistributor()" autocomplete="off">
+        <div>
+            <mat-form-field>
+                <mat-label>Username</mat-label>
+                <input matInput formControlName="username" />
+            </mat-form-field>
+
+            
+            <mat-form-field>
+                <mat-label>First Name</mat-label>
+                <input matInput formControlName="firstName" />
+            </mat-form-field>
+
+            
+            <mat-form-field>
+                <mat-label>Last Name</mat-label>
+                <input matInput formControlName="lastName" />
+            </mat-form-field>
+            
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input matInput formControlName="password" />
+            </mat-form-field>
+            
+            <mat-form-field>
+                <mat-label>Phone Number</mat-label>
+                <input matInput formControlName="phoneNumber" />
+            </mat-form-field>
+            
+            <mat-form-field>
+                <mat-label>Upline Username</mat-label>
+                <input matInput formControlName="upLineUsername" />
+            </mat-form-field>
+        </div>
+
+        <div>
+            <button mat-raised-button>Add Distributor</button>
+        </div>
+    </form>
+</div>
