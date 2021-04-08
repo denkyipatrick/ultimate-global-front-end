@@ -10,6 +10,10 @@ import { UtilityService } from '../services/utility.service';
 })
 export class SystemComponent implements OnInit {
   levels: any[];
+  notifications: any[];
+
+  isShowNotificationPopup: boolean;
+
   loggedInDistributor: any;
   generationDownLines: any[];
 
@@ -21,7 +25,17 @@ export class SystemComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.loggedInDistributor);
     this.getDistributorLevels();
+    this.fetchNotifications();
+  }
+
+  toggleNotificationPopup() {
+    this.isShowNotificationPopup = !this.isShowNotificationPopup;
+
+    if (this.isShowNotificationPopup) {
+      this.fetchNotifications();
+    }
   }
 
   getDistributorLevels() {
@@ -30,6 +44,13 @@ export class SystemComponent implements OnInit {
       this.levels = levels;
     }, error => {
       console.error(error);
+    });
+  }
+
+  fetchNotifications() {
+    this.distributorService.fetchNotifications()
+    .subscribe(notifications => {
+      this.notifications = notifications;
     });
   }
 

@@ -1,0 +1,91 @@
+
+<section>
+    <span class="flex items-center justify-between">
+        <p class="text-3xl font-light">Wallet Transactions</p>
+        <a routerLink="../new-transaction" mat-raised-button color="primary">
+            <span>New Transaction</span> &nbsp;
+            <mat-icon>add</mat-icon>
+        </a>
+    </span>
+    <div class="mt-8">
+        <p *ngIf="!transactions?.length"
+            class="text-2xl text-center p-16">Your transactions will be here.</p>
+        <mat-tab-group *ngIf="transactions?.length" 
+            backgroundColor="primary" 
+            color="accent"
+            class="rounded-md">
+            <mat-tab label="All">
+                <section class="my-8">
+                    <div class="flex items-center">
+                        <span class="w-1/3 font-medium">Type</span>
+                        <span class="w-1/3 font-medium">Amount</span>
+                        <span class="w-1/3 font-medium">Date</span>
+                    </div>
+                    <ul>
+                        <li *ngFor="let transaction of transactions"
+                            class="py-4 border-b-2">
+                            <div class="flex items-center">
+                                <span class="w-1/3 capitalize">{{transaction?.type}}</span>
+                                <span class="w-1/3">${{transaction?.amount?.toFixed(2)}}</span>
+                                <span class="w-1/3">{{getTransactionDate(transaction?.createdAt)}}</span>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+            </mat-tab>
+            <mat-tab label="Deposits">
+                <section class="my-8">
+                    <div class="flex items-center">
+                        <span class="w-1/3 font-medium">Amount</span>
+                        <span class="w-1/3 font-medium">Date</span>
+                    </div>
+                    <ul>
+                        <li *ngFor="let transaction of depositTransactions"
+                            class="py-4 border-b-2">
+                            <div class="flex items-center">
+                                <span class="w-1/3">${{transaction?.amount?.toFixed(2)}}</span>
+                                <span class="w-1/3">{{getTransactionDate(transaction?.createdAt)}}</span>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+            </mat-tab>
+            <mat-tab label="Withdrawals">
+                <section class="my-8">
+                    <div class="flex items-center">
+                        <span class="w-1/3 font-medium">Amount</span>
+                        <span class="w-1/3 font-medium">Date</span>
+                    </div>
+                    <ul>
+                        <li *ngFor="let transaction of withdrawalTransactions"
+                            class="py-4 border-b-2">
+                            <div class="flex items-center">
+                                <span class="w-1/3">${{transaction?.amount?.toFixed(2)}}</span>
+                                <span class="w-1/3">{{getTransactionDate(transaction?.createdAt)}}</span>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+            </mat-tab>
+            <mat-tab label="Transfers">
+                <section class="my-8">
+                    <div class="flex items-center">
+                        <span class="w-1/3 font-medium">Receiver</span>
+                        <span class="w-1/3 font-medium">Amount</span>
+                        <span class="w-1/3 font-medium">Date</span>
+                    </div>
+                    <ul>
+                        <li *ngFor="let transaction of transferTransactions"
+                            class="py-4 border-b-2">
+                            <div class="flex items-center">
+                                <span class="w-1/3">@{{transaction?.transfer?.receiverUsername}}</span>
+                                <span class="w-1/3">${{transaction?.amount?.toFixed(2)}}</span>
+                                <span class="w-1/3">{{getTransactionDate(transaction?.createdAt)}}</span>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</section>

@@ -1,0 +1,72 @@
+<mat-toolbar color="warn">
+    <span class="row mx-auto flex items-center justify-between" >
+        <h1>Admin</h1>
+        <span class="mr-auto"></span>
+        <div class="flex items-center space-x-4">
+            <a routerLink="profile">
+                <div>
+                    <p class="text-xs font-light">Logged In</p>
+                    <p class="text-xs font-medium" style="margin: 0;">
+                        {{admin?.firstName}} {{admin?.lastName}}
+                    </p>
+                </div>
+            </a>
+            <a routerLink="settings" mat-icon-button>
+                <mat-icon>settings</mat-icon>
+            </a>
+        </div>
+    </span>
+</mat-toolbar>
+
+<mat-drawer-container class="row drawer mx-auto">
+    <mat-drawer opened mode=side style="width: 250px;" 
+        class="h-full w-3/12">
+
+        <div>
+            <nav class="space-y-4">
+                <section>
+                    <p>Users</p>
+                    <ul class="space-y-2">
+                        <li>
+                            <a mat-button routerLink="create-user">New User</a>
+                        </li>
+                        <li>
+                            <a mat-button routerLink="users">All User</a>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <p>Messages</p>
+                    <ul class="space-y-2">
+                        <li>
+                            <a mat-button routerLink="messages">View Messages</a>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <p>Transactions</p>
+                    <ul class="space-y-2">
+                        <li>
+                            <a mat-button routerLink="make-a-deposit">Make a Deposit</a>
+                        </li>
+                        <li>
+                            <a mat-button routerLink="wallet-transactions/deposit">Wallet Transactions</a>
+                        </li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <p>System</p>
+                    <ul class="space-y-2">
+                        <li>
+                            <a mat-button routerLink="/auth/admin-sign-in">Sign Out</a>
+                        </li>
+                    </ul>
+                </section>
+            </nav>
+        </div>
+    </mat-drawer>
+    <mat-drawer-content class="p-2">
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+</mat-drawer-container>

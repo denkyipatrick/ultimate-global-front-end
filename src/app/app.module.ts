@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -29,6 +30,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
     RouterModule,
     MatProgressBarModule,
     MatFormFieldModule,
+    MatSidenavModule,
     ReactiveFormsModule,
     BrowserAnimationsModule
   ],

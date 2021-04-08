@@ -1,42 +1,167 @@
+<header>
+    <section>
+        <mat-toolbar color="primary">
+            <div class="row flex items-center mx-auto">
+                <p class="text-2xl font-light">
+                    Our System
+                </p>
+                <span class='mr-auto'></span>
+                <div class="flex items-center space-x-4">
+                    <span class="flex items-center space-x-2">
+                        <mat-icon>money</mat-icon> 
+                        <p class="font-light">
+                            ${{loggedInDistributor?.wallet?.balance?.toFixed(2)}}
+                        </p>
+                    </span>
 
-<div class="flex items-stretch h-full">
-    <div class="bg-gray-300 w-3/12 p-4 text-black">
-        <span class="my-4 space-y-4 block">        
-            <a href="add-distributor" mat-raised-button color="primary">
-                <mat-icon>add</mat-icon> Add Distributor
-            </a>
+                    <div class="relative">
+                        <button mat-icon-button (click)="toggleNotificationPopup()">
+                            <mat-icon>notifications</mat-icon>
+                        </button>
 
-            <a href="/signin" class="block">sign out</a>
-        </span>
+                        <div *ngIf="isShowNotificationPopup" 
+                            style="width: 400px; height: 400px;"
+                            class="absolute top-full right-0 bg-white 
+                            z-20 shadow-md text-black overflow-y-hidden">
+                            <p class="text-xl font-medium p-4 shadow-sm">Notifications</p>
 
-        <p class="text-lg">UpLine Stages</p>
-        <button [matMenuTriggerFor]="menu" mat-raised-button>
-            View Stage Generation <mat-icon>arrow_forward</mat-icon>
-        </button>
-        <mat-menu #menu>
-            <a mat-menu-item *ngFor="let stage of levels"
-                [href]="'/distributors/' + loggedInDistributor?.username + 
-                        '/generation/' + stage?.name">
-                    {{stage?.name}} Generation
-            </a>
-        </mat-menu>
-        <!-- <ul class="space-y-2">
-            <li *ngFor="let stage of levels">
-                <a 
-                    mat-button
-                    [href]="'/distributors/' + loggedInDistributor?.username + 
-                        '/generation/' + stage?.name">
-                    {{stage?.name}} Down lines
-                </a>
-            </li>
-        </ul> -->
-    </div>
-    <div class="bg-white w-9/12 p-4">
-        <router-outlet></router-outlet>
-        <!-- <ul class="flex items-center justify-center">
-            <li *ngFor="let distributor of generationDownLines">
-                <app-generation-item [distributor]="distributor"></app-generation-item>
-            </li>
-        </ul> -->
-    </div>
-</div>
+                            <ul class="h-full overflow-y-auto overscroll-y-none">
+                                <li *ngFor="let notification of notifications" 
+                                    class="p-2">
+                                    <div class="text-base 
+                                        font-normal flex 
+                                        items-start border-b pb-2">
+                                        <mat-icon>notifications</mat-icon>
+                                        <div>
+                                            <p class="text-gray-800 font-medium">Notification</p>
+                                            <p class="text-sm text-gray-600 
+                                                whitespace-normal">
+                                                {{notification?.message}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li *ngFor="let notification of notifications" 
+                                    class="p-2">
+                                    <div class="text-base 
+                                        font-normal flex 
+                                        items-start border-b pb-2">
+                                        <mat-icon>notifications</mat-icon>
+                                        <div>
+                                            <p class="text-gray-800 font-medium">Notification</p>
+                                            <p class="text-sm text-gray-600 
+                                                whitespace-normal">
+                                                {{notification?.message}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <span class="flex items-center 
+                        space-x-2
+                        px-2
+                        rounded-md
+                        bg-blue-900">
+                        <mat-icon>account_circle</mat-icon>
+                        <p class="text-sm font-light">{{loggedInDistributor?.username}}</p>
+                        <button mat-icon-button
+                            [matMenuTriggerFor]="menu">
+                            <mat-icon>expand_more</mat-icon>
+                        </button>
+
+                        <mat-menu #menu>
+                            <a href="/sign-in" mat-menu-item>Sign Out</a>
+                        </mat-menu>
+                    </span>
+                </div>
+            </div>
+        </mat-toolbar>
+    </section>
+</header>
+
+<mat-drawer-container class="row mx-auto" style="height: 90vh;">
+    <mat-drawer opened mode="side" style="width: 350px;">
+        <div class="h-full p-4 text-black">
+            <mat-accordion>
+                <mat-expansion-panel [expanded]="true">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>Menu</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <a routerLink="dashboard" mat-button 
+                        color="primary"
+                        class="menu-item w-full"
+                        routerLinkActive="active-link">
+                        <mat-icon>dashboard</mat-icon> &nbsp;
+                        <span>Dashboard</span>
+                    </a>
+                    <a routerLink="profile" mat-button 
+                        color="primary"
+                        class="menu-item w-full"
+                        routerLinkActive="active-link">
+                        <mat-icon>account_circle</mat-icon> &nbsp;
+                        <span>My Profile</span>
+                    </a>
+
+                    <a routerLink="add-distributor" mat-button 
+                        color="primary"
+                        class="menu-item w-full"
+                        routerLinkActive="active-link">
+                        <mat-icon>add</mat-icon> &nbsp;
+                        <span>Add Distributor</span>
+                    </a>
+                    
+                    <a routerLink="e-wallet" mat-button 
+                        color="primary"
+                        class="menu-item w-full"
+                        routerLinkActive="active-link">
+                        <mat-icon>account_balance_wallet</mat-icon> &nbsp;
+                        <span>E-Wallet</span>
+                    </a>
+                    
+                    <a routerLink="transactions" mat-button 
+                        color="primary"
+                        class="menu-item w-full"
+                        routerLinkActive="active-link">
+                        <mat-icon>timeline</mat-icon> &nbsp;
+                        <span>Wallet Transactions</span>
+                    </a>
+                    
+                    <a routerLink="contact-admin" mat-button 
+                        color="primary"
+                        class="menu-item w-full"
+                        routerLinkActive="active-link">
+                        <mat-icon>supervisor_account</mat-icon> &nbsp;
+                        <span>Contact Admin</span>
+                    </a>
+
+                    <button [matMenuTriggerFor]="stagesMenu" mat-button 
+                        color="primary"
+                        class="menu-item w-full"
+                        routerLinkActive="active-link">
+                        <mat-icon>account_tree</mat-icon> &nbsp;
+                        <span>View Stage Generation</span> &nbsp;
+                        <mat-icon>chevron_right</mat-icon>
+                    </button>
+                    <mat-menu #stagesMenu>
+                        <a mat-menu-item *ngFor="let stage of levels"
+                            [href]="'/distributors/' + loggedInDistributor?.username + 
+                                    '/generation/' + stage?.name">
+                                {{stage?.name}} Generation
+                        </a>
+                    </mat-menu>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+    </mat-drawer>
+    <mat-drawer-content class="bg-white">
+        <div class="bg-gray-50 w-full p-4">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-drawer-content>
+</mat-drawer-container>
+<!-- 
+<div class="flex items-stretch h-full">    
+</div> -->

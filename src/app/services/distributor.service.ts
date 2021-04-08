@@ -9,16 +9,35 @@ import { Injectable } from '@angular/core';
 export class DistributorService {
   distributor: any;
 
-  constructor(private constantsService: ConstantsService, private http: HttpClient) {
+  constructor(private constants: ConstantsService, private http: HttpClient) {
     this.distributor = JSON.parse(localStorage.getItem('distributor'));
   }
 
+  changeName(username: string, data: any) {
+    return this.http.patch<any>(`${this.constants.DISTRIBUTORS_URL}/` + 
+    `${username}/change-name`, data);
+  }
+  
+  changePassword(username: string, data: any) {
+    return this.http.patch<any>(`${this.constants.DISTRIBUTORS_URL}/` + 
+    `${username}/change-password`, data);
+  }
+
+  fetchNotifications() {
+    return this.http.get<any>(`${this.constants.DISTRIBUTORS_URL}/` +
+    `${this.distributor.username}/notifications`);
+  }
+
   addDistributor(data: any): Observable<any> {
-    return this.http.post(`${this.constantsService.DISTRIBUTORS_URL}`, data)
+    return this.http.post(`${this.constants.DISTRIBUTORS_URL}`, data)
   }
 
   getDownLineGeneration(distributorUsername, stage: string): Observable<any> {
-    return this.http.get(`${this.constantsService.DISTRIBUTORS_URL}/` + 
+    return this.http.get(`${this.constants.DISTRIBUTORS_URL}/` + 
     `${distributorUsername}/generations/${stage.toLowerCase()}`);
+  }
+
+  sendAdminMessage(message: any) {
+    return this.http.post<any>(`${this.constants.MESSAGES_URL}`, message);
   }
 }

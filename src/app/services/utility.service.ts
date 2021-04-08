@@ -7,6 +7,13 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UtilityService {
+  appName: string;
+  appTitleEnd: string = "Ultimate Life Global";
+  adminAppTitleEnd: string = "Ultimate Life Global Admin";
+
+  unknownErrorMessage: string = "Unknown error. Please try again.";
+  connectionErrorMessage: string = "Check your connection and try again.";
+  unexpectedErrorMessage: string = "Unexpected error. Please try again later.";
 
   constructor(private constantsService: ConstantsService, private http: HttpClient) {
   }

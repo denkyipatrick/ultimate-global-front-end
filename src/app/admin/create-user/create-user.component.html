@@ -1,0 +1,36 @@
+<section>
+    <h1>Create New Admin</h1>
+
+    <form [formGroup]="createAdminForm" (ngSubmit)="createAdmin()">
+        <div class="flex items-center justify-between space-x-4">
+            <mat-form-field appearance="fill" class="w-full">
+                <mat-label>First Name</mat-label>
+                <input required matInput formControlName="firstName"/>
+            </mat-form-field>
+            
+            <mat-form-field appearance="fill" class="w-full">
+                <mat-label>Last Name</mat-label>
+                <input required matInput formControlName="lastName"/>
+            </mat-form-field>
+        </div>
+        <div class="flex items-center justify-between space-x-4">
+            <mat-form-field appearance="fill" class="w-full">
+                <mat-label>Username</mat-label>
+                <input required matInput  formControlName="username"/>
+                <mat-hint>This is a unique name for admin to sign in.</mat-hint>
+            </mat-form-field>
+            
+            <mat-form-field appearance="fill" class="w-full">
+                <mat-label>password</mat-label>
+                <input required matInput formControlName="password"/>
+            </mat-form-field>
+        </div>
+
+        <div class="my-8 text-center">
+            <button mat-raised-button color="warn" [disabled]="isCreatingAdmin">
+                <span *ngIf="!isCreatingAdmin">CREATE ADMIN</span>
+                <span *ngIf="isCreatingAdmin">PLEASE WAIT...</span>
+            </button>
+        </div>
+    </form>
+</section>

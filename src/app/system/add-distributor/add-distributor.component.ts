@@ -9,17 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddDistributorComponent implements OnInit {
   form: FormGroup;
+  countryList: string[] = ['Ghana', 'Nigeria', 'Togo'];
+  cityList: string[] = ['Accra', 'Kumasi', 'Takoradi', 'Tamale'];
 
   constructor(private distributorService: DistributorService) {
     this.form = new FormGroup({
+      dob: new FormControl(),
+      city: new FormControl(),
+      email: new FormControl(),
+      country: new FormControl(),
       username: new FormControl(),
       password: new FormControl(),
       lastName: new FormControl(),
       firstName: new FormControl(),
       phoneNumber: new FormControl(),
       upLineUsername: new FormControl(),
-      sponsorUsername: new FormControl()
-    })
+      sponsorUsername: new FormControl(this.distributorService.distributor.username)
+    });
   }
 
   ngOnInit(): void {
@@ -29,11 +35,10 @@ export class AddDistributorComponent implements OnInit {
     if (this.form.invalid) { return; }
 
     if (confirm("Are you sure?")) {
-      this.form.patchValue({ 'sponsorUsername': this.distributorService.distributor.username })
       this.distributorService.addDistributor(this.form.value)
       .subscribe(distributor => {
-        console.log(distributor);
         alert('Distributor Successfully Created.');
+        // this.form.reset();
       }, error => {
         console.error(error);
       });

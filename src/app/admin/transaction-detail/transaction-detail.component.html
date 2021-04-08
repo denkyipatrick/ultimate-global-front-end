@@ -1,0 +1,48 @@
+
+<div>
+    <p class="text-3xl font-light">
+        <span class="capitalize">{{transaction?.type}}</span> 
+        Transaction Detail
+    </p>
+    <p *ngIf="transaction?.type === 'withdrawal' && !transaction?.isProcessed">
+        This transaction has not been processed.
+    </p>
+</div>
+
+<div class="mt-16 space-y-8">
+    <div class="flex items-center text-2xl font-light space-x-4">
+        <p class="w-1/3">
+            Distributor
+        </p>
+        <p class="w-1/3">
+            Amount
+        </p>
+        <p *ngIf="transaction?.type === 'withdrawal' && !transaction?.isProcessed" 
+            class="w-1/3"
+            (click)="setAsPaid()">
+            <button mat-raised-button color="warn">SET AS PAID</button>
+        </p>
+    </div>
+    
+    <div class='font-medium flex items-end'>
+        <span class='block w-1/3'>
+            <p class="text-gray-400">
+                @{{transaction?.wallet?.distributor?.username}}
+            </p>
+            <p class="text-2xl font-light">
+                {{transaction?.wallet?.distributor?.firstName || 'Some Name'}} 
+                {{transaction?.wallet?.distributor?.lastName || 'Another Name'}}
+            </p>
+        </span>
+
+        <p class='w-1/3 text-2xl'>${{transaction?.amount?.toFixed(2)}}</p>
+    </div>
+
+
+    <div>
+        <p>Transaction Date</p>
+        <p class="text-3xl">
+            {{transactionDate}}
+        </p>
+    </div>
+</div>

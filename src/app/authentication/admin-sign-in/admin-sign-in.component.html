@@ -1,0 +1,33 @@
+<mat-toolbar>
+    <h1 class='block w-ful mx-auto text-center'>Administration Sign In</h1>
+</mat-toolbar>
+
+<form [formGroup]="signInForm" (ngSubmit)="signIn()"
+    style="width: 400px; max-width: 95%;" class="mx-auto p-4">
+    <mat-card>
+        <mat-card-content class="space-y-4">
+            <div>
+                <mat-form-field appearance="fill" class="w-full">
+                    <mat-label>Username</mat-label>
+                    <input required matInput formControlName="username" />
+                    <mat-error>Please enter your username!</mat-error>
+                </mat-form-field>
+    
+                <mat-form-field appearance="fill" class="w-full">
+                    <mat-label>Password</mat-label>
+                    <input required matInput type="password" formControlName="password" />
+                    <mat-error>Please enter your password.</mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="text-center space-y-2">
+                <p class="text-red-500 font-mono">{{networkErrorMessage}}</p>
+                <button mat-raised-button color="warn" 
+                    class="w-full" [disabled]="isSigningIn">
+                    <span *ngIf="!isSigningIn">SIGN IN</span>
+                    <span *ngIf="isSigningIn">SIGNING IN...</span>
+                </button>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</form>

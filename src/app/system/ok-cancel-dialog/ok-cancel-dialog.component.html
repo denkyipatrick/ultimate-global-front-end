@@ -1,0 +1,25 @@
+
+<div>
+    <span class="flex items-center space-x-3">
+        <mat-icon>help</mat-icon>
+        <p class="text-lg font-medium">{{data?.title || 'Dialog Title'}}</p>
+    </span>
+    <p style="margin: 1rem 0;" class="my-4">
+        {{data?.message || 'Lorem ipsum dolor sit amet consectetur, 
+        adipisicing elit. Ex nisi minima, ea sequi 
+        porro iste debitis corrupti at deleniti 
+        repellendus dignissimos tempora. Ullam 
+        cupiditate praesentium iure quam 
+        consectetur veniam perspiciatis!'}}
+    </p>
+    <div class="text-right">
+        <span class="space-x-2">
+            <button mat-button (click)="_close()">
+                {{data?.cancelButtonText || 'CANCEL'}}
+            </button>
+            <button mat-button (click)="_accept()">
+                {{data?.okButtonText || 'OK'}}
+            </button>
+        </span>
+    </div>
+</div>

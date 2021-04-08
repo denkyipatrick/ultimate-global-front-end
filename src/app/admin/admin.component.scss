@@ -1,0 +1,18 @@
+.row {
+    width: 1366px;
+    max-width: 95%;
+}
+
+.drawer {
+    height: calc(100vh - 64px)
+}
+
+p {
+    margin: 0;
+}
+
+nav {
+    a {
+        border-bottom: 1px solid rgb(219, 219, 219);
+    }
+}

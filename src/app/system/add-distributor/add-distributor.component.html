@@ -1,42 +1,130 @@
+<div style="width: 500px; max-width: 100%;">
+    <p class="text-3xl font-light">Create Distributor</p>
+    <mat-card>
+        <form [formGroup]="form" (ngSubmit)="addDistributor()" autocomplete="off">
+            <div class="space-y-2">
+                <span class="flex items-center 
+                    justify-between space-x-6">
+                    <mat-form-field class="w-full">
+                        <mat-label>First Name</mat-label>
+                        <input matInput 
+                            required
+                            formControlName="firstName" />
+                    </mat-form-field>
+                    
+                    <mat-form-field class="w-full">
+                        <mat-label>Last Name</mat-label>
+                        <input matInput 
+                            required
+                            formControlName="lastName" />
+                    </mat-form-field>
+                </span>
 
-<div>
-    <form [formGroup]="form" (ngSubmit)="addDistributor()" autocomplete="off">
-        <div>
-            <mat-form-field>
-                <mat-label>Username</mat-label>
-                <input matInput formControlName="username" />
-            </mat-form-field>
+                <span class="flex items-center 
+                    justify-between space-x-6">
+                    <mat-form-field class="w-full">
+                        <mat-label>Username</mat-label>
+                        <input matInput 
+                            required
+                            formControlName="username" />
+                        <mat-hint>Username must be lowercase.</mat-hint>
+                        <mat-error>Enter distributor's username</mat-error>
+                    </mat-form-field>
+                    
+                    <mat-form-field class="w-full">
+                        <mat-label>Password</mat-label>
+                        <input matInput 
+                            required
+                            type="password"
+                            formControlName="password" />
+                    </mat-form-field>
+                </span>
+                
+                <mat-form-field class="w-full">
+                    <mat-label>Email Address</mat-label>
+                    <input matInput 
+                        required
+                        email
+                        type="email"
+                        formControlName="email" />
+                </mat-form-field>
 
-            
-            <mat-form-field>
-                <mat-label>First Name</mat-label>
-                <input matInput formControlName="firstName" />
-            </mat-form-field>
+                <span class="flex items-center 
+                    justify-between space-x-6">
+                    <mat-form-field class="w-full">
+                        <mat-label>Phone Number</mat-label>
+                        <input matInput 
+                            required
+                            type="tel"
+                            formControlName="phoneNumber" />
+                    </mat-form-field>
+                    
+                    <mat-form-field class="w-full">
+                        <mat-label>Date of Birth</mat-label>
+                        <input matInput 
+                            required
+                            formControlName="dob" />
+                        <!-- <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle> -->
+                        <!-- <mat-datepicker #picker></mat-datepicker> -->
+                    </mat-form-field>
+                </span>
 
-            
-            <mat-form-field>
-                <mat-label>Last Name</mat-label>
-                <input matInput formControlName="lastName" />
-            </mat-form-field>
-            
-            <mat-form-field>
-                <mat-label>Password</mat-label>
-                <input matInput formControlName="password" />
-            </mat-form-field>
-            
-            <mat-form-field>
-                <mat-label>Phone Number</mat-label>
-                <input matInput formControlName="phoneNumber" />
-            </mat-form-field>
-            
-            <mat-form-field>
-                <mat-label>Upline Username</mat-label>
-                <input matInput formControlName="upLineUsername" />
-            </mat-form-field>
-        </div>
-
-        <div>
-            <button mat-raised-button>Add Distributor</button>
-        </div>
-    </form>
+                <span class="flex items-center 
+                    justify-between space-x-6">
+                    <mat-form-field class="w-full">
+                        <mat-label>Sponsor Username</mat-label>
+                        <input matInput 
+                            required
+                            type="text"
+                            formControlName="sponsorUsername" />
+                    </mat-form-field>
+                    
+                    <mat-form-field class="w-full">
+                        <mat-label>Upline Username</mat-label>
+                        <input matInput 
+                            required
+                            formControlName="upLineUsername" />
+                    </mat-form-field>
+                </span>
+                
+                <span class="flex items-center 
+                    justify-between space-x-6">
+                    <mat-form-field class="w-full">
+                        <mat-label>Select Country</mat-label>
+                        <mat-select required formControlName="country">
+                            <mat-option *ngFor="let country of countryList"
+                                [value]="country">
+                                {{country}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    
+                    <mat-form-field class="w-full">
+                        <mat-label>Select City</mat-label>
+                        <mat-select required formControlName="city">
+                            <mat-option *ngFor="let city of cityList"
+                                [value]="city">
+                                {{city}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </span>
+            </div>
+    
+            <div class="my-4 space-y-4 text-center">
+                <span>
+                    <mat-checkbox #confirmCheckbox>
+                        I accept the Terms and Conditions. 
+                        Click <a>here</a> to read more.
+                    </mat-checkbox>
+                </span>
+                <button 
+                    mat-raised-button 
+                    color="primary"
+                    [disabled]="!confirmCheckbox.checked">
+                    Add Distributor
+                </button>
+            </div>
+        </form>
+    </mat-card>
 </div>

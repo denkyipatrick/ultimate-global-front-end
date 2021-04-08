@@ -1,0 +1,184 @@
+
+<section class="space-y-8">
+    <header>
+        <span class="relative flex items-center justify-between space-x-4">
+            <p class="text-4xl font-light">Profile</p>
+            <button mat-icon-button [matMenuTriggerFor]="otherSettingsMenu"
+                matTooltip="Other Settings">
+                <mat-icon>settings</mat-icon>
+            </button>
+
+            <mat-menu #otherSettingsMenu>
+                <button mat-menu-item (click)="toggleChangePasswordForm()">
+                    <mat-icon>lock</mat-icon>
+                    <span>Change Password</span>
+                </button>
+            </mat-menu>
+
+            <div *ngIf="showChangePasswordForm" style="width: 400px; min-height: 100px;"
+                    class="absolute z-20 p-4 top-8 right-0 bg-white 
+                        shadow-md space-y-4">
+
+                    <span class="flex items-center justify-between space-x-4">
+                        <h4 class="font-medium" style="margin: 0">Change Your Password</h4>
+                        <button mat-icon-button (click)="toggleChangePasswordForm()"
+                            class="text-red-500">
+                            <mat-icon>cancel</mat-icon>
+                        </button>
+                    </span>
+
+                    <form [formGroup]="changePasswordForm" autocomplete="off" 
+                        (ngSubmit)="changePassword()">
+                        <mat-form-field appearance="fill" class="w-full">
+                            <mat-label>Current Password</mat-label>
+                            <input required matInput formControlName="currentPassword" />
+                            <mat-error>Enter your current password.</mat-error>
+                        </mat-form-field>
+                        
+                        <mat-form-field appearance="fill" class="w-full">
+                            <mat-label>New Password</mat-label>
+                            <input #newPasswordTextbox required matInput 
+                                formControlName="newPassword" />
+                            <mat-error>Enter your new password.</mat-error>
+                        </mat-form-field>
+                        
+                        <mat-form-field appearance="fill" class="w-full">
+                            <mat-label>Repeat New Password</mat-label>
+                            <input #confirmedPasswordTextbox required matInput 
+                                formControlName="confirmedPassword" />
+                            <mat-error *ngIf="!confirmedPasswordTextbox.value">
+                                Please enter your new password again.
+                            </mat-error>
+                            <mat-error 
+                                *ngIf="newPasswordTextbox.value && 
+                                    newPasswordTextbox.value !== 
+                                    confirmedPasswordTextbox.value">
+                                Your passwords are not equal.
+                            </mat-error>
+                        </mat-form-field>
+
+                        <div class="text-center space-y-2">
+                            <p class="text-red-500 font-medium">{{passwordChangeErrorMessage}}</p>
+                            <button mat-raised-button color="primary">
+                                <span *ngIf="!isChangingPassword">SAVE</span>
+                                <span *ngIf="isChangingPassword">PLEASE WAIT...</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+        </span>
+    </header>
+
+    <section class="border-b pb-4 space-y-4">
+        <p class="font-medium">Personal</p>
+
+        <section class="flex items-start space-x-6 relative">
+            <img 
+                style="width: 50px;"
+                src="../../../assets/images/svg/person_black_24dp_filled.svg" />
+
+            <div class="flex items-start justify-between space-x-4 w-full">
+                <div class="space-y-6">
+                    <span class="block">
+                        <p class="text-2xl font-medium">
+                            {{distributor?.firstName || 'Mr. Didier'}} 
+                            {{distributor?.lastName || 'Damannah'}}
+                        </p>
+                        <p>@{{distributor?.username}}</p>
+                    </span>
+
+                    <div class="flex items-start space-x-24">
+                        <span class="block space-y-2">
+                            <p class="text-sm font-medium text-gray-500">
+                                Date Registered
+                            </p>
+                            <p class="text-xl">{{dateRegistered}}</p>
+                        </span>
+                        
+                        <span class="block space-y-2">
+                            <p class="text-sm font-medium text-gray-500">
+                                Current Stage
+                            </p>
+                            <p class="text-xl">{{distributor?.stage?.name}}</p>
+                        </span>
+                    </div>
+                    
+                </div>
+
+                <button mat-button color="primary"
+                    (click)="toggleChangeNameForm()">Change your name</button>
+
+                <div *ngIf="showChangeNameForm" style="width: 400px; min-height: 100px;"
+                    class="absolute z-10 p-4 top-8 right-0 bg-white 
+                        shadow-md space-y-4">
+                        <span class="flex items-center justify-between space-x-4">
+                            <h4 class="font-medium" style="margin: 0">Change Your Name</h4>
+                            <button mat-icon-button (click)="toggleChangeNameForm()"
+                                class="text-red-500">
+                                <mat-icon>cancel</mat-icon>
+                            </button>
+                        </span>
+
+                    <form [formGroup]="changeNameForm" autocomplete="off" 
+                        (ngSubmit)="changeName()"
+                        class="space-y-2">
+                        <mat-form-field appearance="fill" class="w-full">
+                            <mat-label>First Name</mat-label>
+                            <input required matInput formControlName="firstName" />
+                        </mat-form-field>
+                        
+                        <mat-form-field appearance="fill" class="w-full">
+                            <mat-label>Last Name</mat-label>
+                            <input required matInput formControlName="lastName" />
+                        </mat-form-field>
+
+                        <div class="text-center space-y-2">
+                            <p class="text-red-500 font-medium">{{nameChangeErrorMessage}}</p>
+                            <button mat-raised-button color="primary">
+                                <span *ngIf="!isChangingName">SAVE</span>
+                                <span *ngIf="isChangingName">PLEASE WAIT...</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="hidden absolute right-0 top-full bg-white" 
+                style="width: 400px; height: 300px;">
+                <h3>Change Your Name</h3>
+            </div>
+        </section>
+    </section>
+
+    <section class="border-b pb-4">
+        <p class="font-medium">Sponsor</p>
+        
+        <section class="flex items-start space-x-6 relative">
+            <img 
+                style="width: 50px;"
+                src="../../../assets/images/svg/person_black_24dp_filled.svg" />
+
+            <div class="flex items-start justify-between space-x-4 w-full">
+                <div class="space-y-6">
+                    <span class="block">
+                        <p class="text-base font-medium">
+                            {{distributor?.sponsor?.firstName || 'Mr. Didier'}} 
+                            {{distributor?.sponsor?.lastName || 'Damannah'}}
+                        </p>
+                        <p>@{{distributor?.sponsor?.username}}</p>
+                    </span>
+
+                    <div class="flex items-start space-x-24">
+                        
+                        <span class="block space-y-2">
+                            <p class="text-sm font-medium text-gray-500">
+                                Current Stage
+                            </p>
+                            <p class="text-xl">{{distributor?.stage?.name}}</p>
+                        </span>
+                    </div>                    
+                </div>
+            </div>
+        </section>
+    </section>
+</section>

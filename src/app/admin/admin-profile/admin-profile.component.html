@@ -1,0 +1,97 @@
+
+<section class="space-y-12">
+    <h1>Admin Profile</h1>
+
+    <section class="space-y-16">
+        <div class="border-b pb-4">
+            <span class="flex items-center justify-between space-x-4 mb-4">
+                <p class="text-4xl font-light">Name</p>
+                <button mat-icon-button 
+                    matTooltip="Change Your Name"
+                    (click)="toggleShowNameForm()">
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </span>
+            <p class="text-lg">{{admin?.firstName}} {{admin?.lastName}}</p>
+
+            <mat-card *ngIf="showNameForm"  
+                style="width: 400px; max-width: 100%;" class="mt-8">
+                <mat-card-content>
+                    <form [formGroup]="nameForm" (ngSubmit)="changeName()"
+                        class="space-y-4" autocomplete="off">
+                        <h3>Change Your Full Name</h3>
+
+                        <div>
+                            <mat-form-field class="w-full">
+                                <mat-label>First Name</mat-label>
+                                <input matInput formControlName="firstName" />
+                            </mat-form-field>
+            
+                            <mat-form-field class="w-full">
+                                <mat-label>Last Name</mat-label>
+                                <input matInput formControlName="lastName" />
+                            </mat-form-field>
+                        </div>
+
+                        <div class="text-center">
+                            <p class="text-red-500">{{nameFormErrorMessage}}</p>
+                            <button mat-raised-button color="warn">
+                                <span *ngIf="!changingAdminName">CHANGE</span>
+                                <span *ngIf="changingAdminName">PLEASE WAIT...</span>
+                            </button>
+                        </div>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+        <div class="border-b pb-4">
+            <span class="flex items-center justify-between space-x-4 mb-4">
+                <p class="text-4xl font-light">Identity &amp; Privacy</p>
+                <button mat-icon-button 
+                    matTooltip="Change Your Password"
+                    (click)="toggleShowPasswordForm()">
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </span>
+
+            <div>
+                <p class="text-xs text-gray-500">Username</p>
+                <p>@{{admin?.username}}</p>
+            </div>
+            
+            <mat-card *ngIf="showPasswordForm" 
+                style="width: 400px; max-width: 100%;" class="mt-8">
+                <form [formGroup]="passwordForm" (ngSubmit)="changePassword()"
+                    class="space-y-4" autocomplete="off">
+                    <h3>Change Your Account Password</h3>
+    
+                    <mat-form-field class="w-full">
+                        <mat-label>Enter Current Password</mat-label>
+                        <input matInput formControlName="currentPassword" />
+                    </mat-form-field>
+                    
+                    <div>
+                        <mat-form-field class="w-full">
+                            <mat-label>New Password</mat-label>
+                            <input matInput formControlName="newPassword" />
+                        </mat-form-field>
+                        <mat-form-field class="w-full">
+                            <mat-label>Confirm New Password</mat-label>
+                            <input matInput formControlName="confirmedPassword" />
+                        </mat-form-field>
+                    </div>
+    
+                    <div class="text-center space-y-3">
+                        <p class="text-red-500">{{passwordFormErrorMessage}}</p>
+                        <button mat-raised-button color="warn">
+                            <span *ngIf="!changingAdminPassword">CHANGE</span>
+                            <span *ngIf="changingAdminPassword">PLEASE WAIT...</span>
+                        </button>
+                    </div>
+                </form>
+            </mat-card>
+            
+        </div>
+    </section>
+</section>

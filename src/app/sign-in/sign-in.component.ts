@@ -37,7 +37,6 @@ export class SignInComponent implements OnInit {
       this.form.value['username'], this.form.value['password'])
     .subscribe(dist => {
       this.isAuthenticating = false;
-      console.log(dist);
       localStorage.setItem('distributor', JSON.stringify(dist));
       this.router.navigate(['/dashboard']);
     }, error => {

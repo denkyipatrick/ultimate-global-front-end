@@ -1,0 +1,56 @@
+
+<section>
+    <header>
+        <h2>Message Detail</h2>
+    </header>
+    <mat-card>
+        <mat-card-content class="space-y-4">
+            <section>
+                <div class="flex items-start justify-between">
+                    <span>
+                        <p class="text-xl font-light">
+                            {{message?.sender?.firstName}} {{message?.sender?.lastName}}
+                        </p>
+                        <p class="text-gray-500 font-medium text-xs">
+                            @{{message?.sender?.username}}
+                        </p>
+                    </span>
+                    <span>
+                        <p class="text-gray-400">{{messageDate}}, {{messageTime}}</p>
+                    </span>
+                </div>
+            </section>
+
+            <section class="p-2 bg-gray-50 rounded-sm">
+                <p>{{message?.text}}</p>
+            </section>
+
+            <section class="space-y-4">
+                <div class="text-right">
+                    <button mat-button color="warn" class="border border-blue-300">
+                        <mat-icon>reply</mat-icon>&nbsp;
+                        <span>Reply Message</span>
+                    </button>
+                </div>
+
+                <div>
+                    <form [formGroup]="messageForm" (ngSubmit)="replyMessage()">
+                        <mat-form-field appearance="outline" class="w-full">
+                            <mat-label>Write your message</mat-label>
+                            <textarea rows="5" matInput formControlName="message"></textarea>
+                        </mat-form-field>
+
+                        <div class="text-right">
+                            <button mat-raised-button color="primary">
+                                <span>SEND MESSAGE</span>&nbsp;
+                                <mat-icon>chevron_right</mat-icon>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+
+        </mat-card-content>
+    </mat-card>
+</section>
