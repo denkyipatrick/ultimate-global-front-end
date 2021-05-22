@@ -1,0 +1,36 @@
+
+<section>
+    <header>
+        <p class="text-3xl">General Messaging</p>
+        <p class="text-lg">Update your distributors with timely updates by sending a general message.</p>
+    </header>
+
+    <section class="mt-12 grid lg:grid-cols-2 gap-4">
+        <mat-card class="self-start border-r">
+            <mat-card-content>
+                <div>
+                    <p class="text-xl">Recent Update</p>
+                    <p>{{latestNews?.message}}</p>
+                </div>
+            </mat-card-content>
+        </mat-card>
+        <mat-card>
+            <mat-card-content>
+                <form [formGroup]="updateForm" (ngSubmit)="postUpdate()">
+                    <p class="text-xl">Write and Post a New Update</p>
+                    <mat-form-field appearance="fill" class="w-full">
+                        <mat-label>Write an Update</mat-label>
+                        <textarea matInput required rows="5" formControlName="message"></textarea>
+                    </mat-form-field>
+
+                    <div class="text-right">
+                        <button mat-raised-button color="warn" 
+                            class="uppercase">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </section>
+</section>

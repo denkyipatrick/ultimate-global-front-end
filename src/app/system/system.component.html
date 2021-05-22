@@ -3,7 +3,7 @@
         <mat-toolbar color="primary">
             <div class="row flex items-center mx-auto">
                 <p class="text-2xl font-light">
-                    Our System
+                   {{appTitleBarName}}
                 </p>
                 <span class='mr-auto'></span>
                 <div class="flex items-center space-x-4">
@@ -26,21 +26,6 @@
                             <p class="text-xl font-medium p-4 shadow-sm">Notifications</p>
 
                             <ul class="h-full overflow-y-auto overscroll-y-none">
-                                <li *ngFor="let notification of notifications" 
-                                    class="p-2">
-                                    <div class="text-base 
-                                        font-normal flex 
-                                        items-start border-b pb-2">
-                                        <mat-icon>notifications</mat-icon>
-                                        <div>
-                                            <p class="text-gray-800 font-medium">Notification</p>
-                                            <p class="text-sm text-gray-600 
-                                                whitespace-normal">
-                                                {{notification?.message}}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </li>
                                 <li *ngFor="let notification of notifications" 
                                     class="p-2">
                                     <div class="text-base 
@@ -147,7 +132,7 @@
                     </button>
                     <mat-menu #stagesMenu>
                         <a mat-menu-item *ngFor="let stage of levels"
-                            [href]="'/distributors/' + loggedInDistributor?.username + 
+                            [href]="'/system/distributors/' + loggedInDistributor?.username + 
                                     '/generation/' + stage?.name">
                                 {{stage?.name}} Generation
                         </a>

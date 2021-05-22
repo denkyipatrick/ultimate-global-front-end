@@ -112,6 +112,9 @@
             </div>
     
             <div class="my-4 space-y-4 text-center">
+                <p class="text-red-600 font-medium">
+                    {{errorMessage}}
+                </p>
                 <span>
                     <mat-checkbox #confirmCheckbox>
                         I accept the Terms and Conditions. 
@@ -122,7 +125,12 @@
                     mat-raised-button 
                     color="primary"
                     [disabled]="!confirmCheckbox.checked">
-                    Add Distributor
+                    <span *ngIf="!isCreatingDistributor">
+                        ADD DISTRIBUTOR
+                    </span>
+                    <span *ngIf="isCreatingDistributor">
+                        CREATING...
+                    </span>
                 </button>
             </div>
         </form>

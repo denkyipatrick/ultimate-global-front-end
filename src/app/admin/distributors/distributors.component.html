@@ -1,0 +1,30 @@
+
+<section>
+    <header>
+        <p class="text-3xl">Distributors</p>
+        <p>Total {{distributors?.length}}</p>
+    </header>
+
+    <section class="flex items-start space-x-4">
+        <div class="w-1/2 border" style="max-height: 80vh; overflow-y: auto;">
+            <ul>
+                <li *ngFor="let distributor of distributors" (click)="selected(distributor.username)"
+                    [class.bg-gradient-to-r]="distributor.username === selectedDistributorUsername"
+                    class="from-blue-700 to-blue-900 p-2 border-b">
+                    <a [routerLink]="distributor?.username">
+                        <div class="py-1font-light" 
+                            [class.text-white]="distributor.username === selectedDistributorUsername">
+                            <p>{{distributor?.firstName}} {{distributor?.lastName}}</p>
+                            <p class="text-xs font-medium">@{{distributor?.username}}</p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="w-1/2">
+            <router-outlet></router-outlet>
+        </div>
+
+    </section>
+</section>

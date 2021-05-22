@@ -1,0 +1,107 @@
+
+<section class="space-y-4">
+    <header>
+        <p class="text-2xl text-center">Distributor Details</p>
+    </header>
+
+    <section>
+        <mat-card class="space-y-4">
+            <div class="text-center space-y-2">
+                <img src="../../../assets/images/dp_2.png" 
+                    style="width: 100px;" class="block mx-auto rounded-full" />
+                <span class="block">
+                    <p class="text-xl font-medium">{{distributor?.firstName}} {{distributor?.lastName}}</p>
+                    <p>@{{distributor?.username}}</p>
+                    <button mat-button class="uppercase" 
+                        type="button" color="primary"
+                        (click)="toggleChangeNameForm()">Change Name</button>
+                </span>
+                
+                <form *ngIf="showChangeNameForm" [formGroup]="changeNameForm" autocomplete="off" 
+                    (ngSubmit)="changeName()" style="width: 300px;"
+                    class="space-y-2 shadow-lg p-4
+                        absolute z-10 right-0
+                        bg-gradient-to-b from-white to-gray-200">
+                    <div class="flex items-center justify-between space-x-4">
+                        <p class="text-lg font-medium">Change Distributor Name</p>
+                        <button mat-icon-button color="warn"
+                        (click)="toggleChangeNameForm()" type="button">cancel</button>
+                    </div>
+                    <mat-form-field appearance="fill" class="w-full">
+                        <mat-label>First Name</mat-label>
+                        <input required matInput formControlName="firstName" />
+                    </mat-form-field>
+                    
+                    <mat-form-field appearance="fill" class="w-full">
+                        <mat-label>Last Name</mat-label>
+                        <input required matInput formControlName="lastName" />
+                    </mat-form-field>
+
+                    <div class="text-right space-y-2">
+                        <p class="text-red-500 font-medium">{{nameChangeErrorMessage}}</p>
+                        <button mat-raised-button color="warn">
+                            <span *ngIf="!isChangingName">CHANGE NAME</span>
+                            <span *ngIf="isChangingName">PLEASE WAIT...</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="p-4 rounded-md grid lg:grid-cols-2 gap-4 text-white font-medium
+                bg-gradient-to-r from-blue-500 to-blue-800
+                shadow-lg">
+                <span>
+                    <p class="text-xs text-gray-100">Phone Number</p>
+                    <p class="text-lg font-light">{{distributor?.phoneNumber}}</p>
+                </span>
+                <span class="text-right">
+                    <p class="text-xs text-gray-100">Email Address</p>
+                    <p class="text-lg font-light">{{distributor?.emailAddress}}</p>
+                </span>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-8 text-white font-medium">
+                <span class="p-4 rounded-md bg-gradient-to-r from-green-500 to-green-800 shadow-lg">
+                    <p class="text-xs text-gray-100">Country</p>
+                    <p class="text-lg font-light">{{distributor?.country}}</p>
+                </span>
+                <span class="p-4 rounded-md text-right bg-gradient-to-r from-green-800 to-green-500 shadow-lg">
+                    <p class="text-xs text-gray-100">City</p>
+                    <p class="text-lg font-light">{{distributor?.city}}</p>
+                </span>
+            </div>
+
+            <div class="p-4 rounded-md grid lg:grid-cols-2 gap-4 text-white font-medium
+                bg-gradient-to-r from-red-500 to-red-800
+                shadow-lg">
+                <span>
+                    <p class="text-xs text-gray-100">Wallet Balance</p>
+                    <p class="text-lg font-light">USD {{distributor?.wallet?.balance?.toFixed(2)}}</p>
+                </span>
+                <span class="text-right">
+                    <p class="text-xs text-gray-100">Level</p>
+                    <p class="text-lg font-light">{{distributor?.stage?.name}}</p>
+                </span>
+            </div>
+            
+            <div class="p-4 rounded-md lg:grid-cols-2 gap-4 text-white font-medium
+                bg-gradient-to-r from-indigo-400 to-indigo-800
+                shadow-lg space-y-4">
+                <div>
+                    <p class="text-xs text-gray-100">Bank Name</p>
+                    <p class="text-lg font-light">{{distributor?.bankName}}</p>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <span>
+                        <p class="text-xs text-gray-100">Account Number</p>
+                        <p class="text-lg font-light">{{distributor?.accountNumber}}</p>
+                    </span>
+                    <span>
+                        <p class="text-xs text-gray-100">Swift Code</p>
+                        <p class="text-lg font-light">{{distributor?.swiftCode}}</p>
+                    </span>
+                </div>
+            </div>
+        </mat-card>
+    </section>
+</section>

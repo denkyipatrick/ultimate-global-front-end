@@ -12,7 +12,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { GenerationDetailComponent } from './generation-detail/generation-detail.component';
 
 const routes: Routes = [
-  { path: '', component: SystemComponent, children: [
+  { path: 'system', component: SystemComponent, children: [
     { path: 'profile', component: ProfileDetailComponent },
     { path: 'dashboard', component: DashboardComponent },
     { path: 'e-wallet', component: WalletDetailComponent },

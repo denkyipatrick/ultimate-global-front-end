@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { OkCancelDialogComponent } from './../ok-cancel-dialog/ok-cancel-dialog.component';
 import { UtilityService } from './../../services/utility.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -17,12 +18,25 @@ export class ProfileDetailComponent implements OnInit {
   showChangeNameForm: boolean;
   showChangePasswordForm: boolean;
 
+  bankDetailForm: FormGroup;
   changeNameForm: FormGroup;
+  contactDetailForm: FormGroup;
+  nextOfKinDetailForm: FormGroup;
+
   changePasswordForm: FormGroup;
 
   isChangingName: boolean;
   isErrorChangingName: boolean;
   nameChangeErrorMessage: string;
+
+  isShowBankForm: boolean;
+  isChangingBankDetails: boolean;
+
+  isShowContactForm: boolean;
+  isChangingContactDetails: boolean;
+
+  isShowNextOfKinForm: boolean;
+  isChangingNextOfKinDetails: boolean;
 
   isChangingPassword: boolean;
   isErrorChangingPassword: boolean;
@@ -31,6 +45,7 @@ export class ProfileDetailComponent implements OnInit {
   constructor(
     private distributorService: DistributorService, 
     private utilityService: UtilityService,
+    private snackBar: MatSnackBar,
     private dialogOpener: MatDialog) {
     this.distributor = this.distributorService.distributor;
     this.dateRegistered = new Date(this.distributor?.createdAt).toDateString();
@@ -38,6 +53,21 @@ export class ProfileDetailComponent implements OnInit {
     this.changeNameForm = new FormGroup({
       firstName: new FormControl(),
       lastName: new FormControl()
+    });
+
+    this.bankDetailForm = new FormGroup({
+      bankName: new FormControl(this.distributor.bankName),
+      swiftCode: new FormControl(this.distributor.swiftCode),
+      accountNumber: new FormControl(this.distributor.accountNumber)
+    });
+
+    this.contactDetailForm = new FormGroup({
+      phoneNumber: new FormControl(this.distributor.phoneNumber),
+      emailAddress: new FormControl(this.distributor.emailAddress)
+    });
+
+    this.nextOfKinDetailForm = new FormGroup({
+      name: new FormControl()
     });
 
     this.changePasswordForm = new FormGroup({
@@ -56,6 +86,18 @@ export class ProfileDetailComponent implements OnInit {
   
   toggleChangePasswordForm() {
     this.showChangePasswordForm = !this.showChangePasswordForm;
+  }
+
+  toggleBankForm() {
+    this.isShowBankForm = !this.isShowBankForm;
+  }
+
+  toggleContactForm() {
+    this.isShowContactForm = !this.isShowContactForm;
+  }
+
+  toggleNextOfKinForm() {
+    this.isShowNextOfKinForm = !this.isShowNextOfKinForm;
   }
 
   changeName() {
@@ -139,6 +181,68 @@ export class ProfileDetailComponent implements OnInit {
             this.passwordChangeErrorMessage = this.utilityService.unknownErrorMessage;
           }
         }
+      });
+    });
+  }
+  
+  saveContactDetails() {
+    this.isChangingContactDetails = true;
+
+    if (this.contactDetailForm.invalid) { return; }
+
+    this.distributorService.changeContactDetails(
+      this.distributor.username, this.contactDetailForm.value
+    )
+    .subscribe(distributor => {
+      this.isChangingContactDetails = false;
+
+      this.distributorService.distributor.phoneNumber = distributor.phoneNumber;
+      this.distributorService.distributor.emailAddress = distributor.emailAddress;
+
+      this.isShowContactForm = false;
+
+      localStorage.setItem('distributor', JSON.stringify(this.distributorService.distributor));
+      this.snackBar.open('Contacts Details Changed', 'OK', {
+        duration: 7000
+      });
+    }, error => {
+      this.isChangingContactDetails = false;
+      this.snackBar.open('Unable to Complete', 'TRY LATER', {
+        duration: 7000
+      });
+    });
+  }
+
+  saveBankDetails() {
+    if (this.bankDetailForm.invalid) { return; }
+
+    this.isChangingBankDetails = true;
+
+    this.distributorService.changeBankDetails(
+      this.distributor.username, this.bankDetailForm.value
+    )
+    .subscribe(distributor => {
+      this.isChangingBankDetails = false;
+
+      this.distributor.bankName = distributor.bankName;
+      this.distributor.swiftCode = distributor.swiftCode;
+      this.distributor.accountNumber = distributor.accountNumber;
+
+      this.distributorService.distributor.bankName = distributor.bankName;
+      this.distributorService.distributor.swiftCode = distributor.swiftCode;
+      this.distributorService.distributor.accountNumber = distributor.accountNumber;
+
+
+      this.isShowBankForm = false;
+      localStorage.setItem('distributor', JSON.stringify(this.distributorService.distributor));
+    
+      this.snackBar.open('Account Details Changed', 'OK', {
+        duration: 7000
+      });
+    }, error => {
+      this.isChangingBankDetails = false;
+      this.snackBar.open('Unable to Complete', 'TRY LATER', {
+        duration: 7000
       });
     });
   }

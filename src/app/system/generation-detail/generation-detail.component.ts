@@ -44,14 +44,14 @@ export class GenerationDetailComponent implements OnInit {
   }
 
   viewDownLineGeneration(username: string) {
-    location.href = `/distributors/${username}/generation/${this.selectedStageGeneration}`
+    location.href = `/system/distributors/${username}/generation/${this.selectedStageGeneration}`
     // this.router.navigate([`/distributors/${username}/generation/${this.selectedStageGeneration}`]);
   }
 
   loadLevelDownLines(stage: string) {
     this.distributorService.getDownLineGeneration(this.distributorUsername, stage)
     .subscribe(generation => {
-      console.log(generation);
+      // console.log(generation);
       this.upLineGeneration = generation;
       this.generationDownLines = generation;
     }, error => {

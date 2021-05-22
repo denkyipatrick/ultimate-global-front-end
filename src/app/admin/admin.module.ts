@@ -25,6 +25,9 @@ import { NewDepositComponent } from './new-deposit/new-deposit.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MessagingComponent } from './messaging/messaging.component';
 import { MessageDetailComponent } from './message-detail/message-detail.component';
+import { GeneralMessagingComponent } from './general-messaging/general-messaging.component';
+import { DistributorsComponent } from './distributors/distributors.component';
+import { DistributorDetailComponent } from './distributor-detail/distributor-detail.component';
 
 
 @NgModule({
@@ -38,7 +41,7 @@ import { MessageDetailComponent } from './message-detail/message-detail.componen
     UserListComponent, 
     AdminProfileComponent, 
     TransactionDetailComponent, 
-    NewDepositComponent, MessagingComponent, MessageDetailComponent
+    NewDepositComponent, MessagingComponent, MessageDetailComponent, GeneralMessagingComponent, DistributorsComponent, DistributorDetailComponent
   ],
   imports: [
     CommonModule,

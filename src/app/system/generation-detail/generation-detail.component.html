@@ -30,7 +30,7 @@
         <li>
           <div class="level-2 rectangle">
             <a *ngIf="upLineGeneration?.downLines[0]"
-                [href]="'/distributors/' + 
+                [href]="'/system/distributors/' + 
                     upLineGeneration?.downLines[0]?.distributor.username + 
                     '/generation/' + selectedStageGeneration">
                 <img [src]="dpPhotoUrl" />
@@ -63,7 +63,7 @@
                 <div class="level-3 rectangle">
                   <a 
                     *ngIf="upLineGeneration?.downLines[0]?.downLines[0]"
-                    [href]="'/distributors/' + 
+                    [href]="'/system/distributors/' + 
                         upLineGeneration?.downLines[0]?.downLines[0]?.distributor.username + 
                         '/generation/' + selectedStageGeneration">
                         <img [src]="dpPhotoUrl" />
@@ -95,7 +95,7 @@
                   <li>
                       <div class="level-4 rectangle">
                         <a 
-                            [href]="'/distributors/' + 
+                            [href]="'/system/distributors/' + 
                             upLineGeneration?.downLines[0]?.downLines[0]?.downLines[0]?.distributor?.username + 
                             '/generation/' + selectedStageGeneration"
                             *ngIf="upLineGeneration?.downLines[0]?.downLines[0]?.downLines[0]">
@@ -128,7 +128,7 @@
                   <li>
                       <div class="level-4 rectangle">
                         <a 
-                            [href]="'/distributors/' + 
+                            [href]="'/system/distributors/' + 
                                 upLineGeneration?.downLines[0]?.downLines[0]?.downLines[1]?.distributor.username + 
                                 '/generation/' + selectedStageGeneration"
                             *ngIf="upLineGeneration?.downLines[0]?.downLines[0]?.downLines[1]">
@@ -163,7 +163,7 @@
             <li>
                 <div class="level-3 rectangle">
                     <a 
-                        [href]="'/distributors/' + 
+                        [href]="'/system/distributors/' + 
                             upLineGeneration?.downLines[0]?.downLines[1]?.distributor.username + 
                             '/generation/' + selectedStageGeneration"
                         *ngIf="upLineGeneration?.downLines[0]?.downLines[1]">
@@ -197,7 +197,7 @@
                     <li>
                         <div class="level-4 rectangle">
                             <a 
-                                [href]="'/distributors/' + 
+                                [href]="'/system/distributors/' + 
                                     upLineGeneration?.downLines[0]?.downLines[1]?.downLines[0]?.distributor.username + 
                                     '/generation/' + selectedStageGeneration"
                                 *ngIf="upLineGeneration?.downLines[0]?.downLines[1]?.downLines[0]">
@@ -230,7 +230,7 @@
                     <li>
                         <div class="level-4 rectangle">
                             <a 
-                                [href]="'/distributors/' + 
+                                [href]="'/system/distributors/' + 
                                     upLineGeneration?.downLines[0]?.downLines[1]?.downLines[1]?.distributor.username + 
                                     '/generation/' + selectedStageGeneration"
                                 *ngIf="upLineGeneration?.downLines[0]?.downLines[1]?.downLines[1]">
@@ -270,7 +270,7 @@
         <li>
             <div class="level-2 rectangle">
                 <a 
-                    [href]="'/distributors/' + 
+                    [href]="'/system/distributors/' + 
                         upLineGeneration?.downLines[1]?.distributor.username + 
                         '/generation/' + selectedStageGeneration"
                     *ngIf="upLineGeneration?.downLines[1]">
@@ -303,7 +303,7 @@
                 <li>
                     <div class="level-3 rectangle">
                         <a 
-                        [href]="'/distributors/' + 
+                        [href]="'/system/distributors/' + 
                             upLineGeneration?.downLines[1]?.downLines[0]?.distributor.username + 
                             '/generation/' + selectedStageGeneration"
                         *ngIf="upLineGeneration?.downLines[1]?.downLines[0]">
@@ -336,7 +336,7 @@
                         <li>
                             <div class="level-4 rectangle">
                                 <a 
-                                    [href]="'/distributors/' + 
+                                    [href]="'/system/distributors/' + 
                                         upLineGeneration?.downLines[1]?.downLines[0]?.downLines[0]?.distributor.username + 
                                         '/generation/' + selectedStageGeneration"
                                     *ngIf="upLineGeneration?.downLines[1]?.downLines[0]?.downLines[0]">
@@ -368,7 +368,7 @@
                         <li>
                             <div class="level-4 rectangle">
                                 <a 
-                                    [href]="'/distributors/' + 
+                                    [href]="'/system/distributors/' + 
                                         upLineGeneration?.downLines[1]?.downLines[0]?.downLines[1]?.distributor.username + 
                                         '/generation/' + selectedStageGeneration"
                                     *ngIf="upLineGeneration?.downLines[1]?.downLines[0]?.downLines[1]">
@@ -402,7 +402,7 @@
                 <li>
                     <div class="level-3 rectangle">
                         <a 
-                            [href]="'/distributors/' + 
+                            [href]="'/system/distributors/' + 
                             upLineGeneration?.downLines[1]?.downLines[1]?.distributor.username + 
                             '/generation/' + selectedStageGeneration"
                             *ngIf="upLineGeneration?.downLines[1]?.downLines[1]">
@@ -436,7 +436,7 @@
                         <li>
                             <div class="level-4 rectangle">
                                 <a 
-                                    [href]="'/distributors/' + 
+                                    [href]="'/system/distributors/' + 
                                         upLineGeneration?.downLines[1]?.downLines[1]?.downLines[0]?.distributor.username + 
                                         '/generation/' + selectedStageGeneration"
                                     *ngIf="upLineGeneration?.downLines[1]?.downLines[1]?.downLines[0]">
@@ -468,7 +468,7 @@
                         <li>
                             <div class="level-4 rectangle">
                                 <a 
-                                    [href]="'/distributors/' + 
+                                    [href]="'/system/distributors/' + 
                                         upLineGeneration?.downLines[1]?.downLines[1]?.downLines[1]?.distributor.username + 
                                         '/generation/' + selectedStageGeneration"
                                     *ngIf="upLineGeneration?.downLines[1]?.downLines[1]?.downLines[1]">

@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:4700/api'
+  appName: 'UltimateLifeGlobal',
+  apiUrl: 'https://lollandscreditunion.com:4700/api'
 };

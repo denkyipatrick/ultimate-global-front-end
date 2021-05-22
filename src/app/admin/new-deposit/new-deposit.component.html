@@ -1,5 +1,5 @@
 
-    <section>
+    <section class="">
         <span class="flex items-center justify-between mb-3">
             <p class="text-3xl font-light">
                 <span>New Transaction</span>
@@ -16,10 +16,6 @@
                 <form [formGroup]="transactionForm" 
                     autocomplete="off"
                     (ngSubmit)="createTransaction()">
-                    <div>
-                        <p class="text-xs font-medium">Wallet Info</p>
-                        <p class="text-xl">${{wallet?.balance?.toFixed(2)}}</p>
-                    </div>
 
                     <div class="flex items-center 
                         justify-between 
@@ -47,19 +43,19 @@
                         </mat-form-field>
                     </div>
 
-                    <div *ngIf="selectedTransactionType == 'Transfer'">
+                    <div>
                         <mat-form-field class="w-full">
                             <mat-label>Receiver Username</mat-label>
                             <input matInput 
                                 required 
-                                formControlName="transferReceiverUsername" />
+                                formControlName="distributorUsername" />
                             <mat-error>Enter receiver username</mat-error>
                         </mat-form-field>
                     </div>
 
-                    <div class="text-right">
+                    <div class="text-center">
                         <button mat-raised-button
-                            color="primary"
+                            color="warn"
                             [disabled]="isTransactionInProgress">
                             <span>CONTINUE</span>
                             <mat-icon>keyboard_arrow_right</mat-icon>

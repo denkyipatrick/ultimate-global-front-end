@@ -81,8 +81,8 @@
                 <div class="space-y-6">
                     <span class="block">
                         <p class="text-2xl font-medium">
-                            {{distributor?.firstName || 'Mr. Didier'}} 
-                            {{distributor?.lastName || 'Damannah'}}
+                            {{distributor?.firstName}} 
+                            {{distributor?.lastName}}
                         </p>
                         <p>@{{distributor?.username}}</p>
                     </span>
@@ -104,9 +104,6 @@
                     </div>
                     
                 </div>
-
-                <button mat-button color="primary"
-                    (click)="toggleChangeNameForm()">Change your name</button>
 
                 <div *ngIf="showChangeNameForm" style="width: 400px; min-height: 100px;"
                     class="absolute z-10 p-4 top-8 right-0 bg-white 
@@ -142,18 +139,13 @@
                     </form>
                 </div>
             </div>
-
-            <div class="hidden absolute right-0 top-full bg-white" 
-                style="width: 400px; height: 300px;">
-                <h3>Change Your Name</h3>
-            </div>
         </section>
     </section>
 
     <section class="border-b pb-4">
         <p class="font-medium">Sponsor</p>
         
-        <section class="flex items-start space-x-6 relative">
+        <section *ngIf="distributor?.sponsor" class="flex items-start space-x-6 relative">
             <img 
                 style="width: 50px;"
                 src="../../../assets/images/svg/person_black_24dp_filled.svg" />
@@ -162,8 +154,8 @@
                 <div class="space-y-6">
                     <span class="block">
                         <p class="text-base font-medium">
-                            {{distributor?.sponsor?.firstName || 'Mr. Didier'}} 
-                            {{distributor?.sponsor?.lastName || 'Damannah'}}
+                            {{distributor?.sponsor?.firstName}} 
+                            {{distributor?.sponsor?.lastName}}
                         </p>
                         <p>@{{distributor?.sponsor?.username}}</p>
                     </span>
@@ -181,4 +173,98 @@
             </div>
         </section>
     </section>
+    <section class="border-b pb-4 space-y-4">
+        <span class="flex items-center justify-between space-x-4">
+            <p class="font-medium">Contact Details</p>
+            <button mat-raised-button (click)="toggleContactForm()">Edit Contact Details</button>
+        </span>
+
+        <section class="grid md:grid-cols-2 gap-8 relative">
+            <div class="bg-white shadow-md rounded-md p-6">
+                <p class="font-light">Phone Number</p>
+                <p class="text-lg">{{distributor?.phoneNumber}}</p>
+            </div>
+            <div class="bg-white shadow-md rounded-md p-6">
+                <p class="font-light">Email Address</p>
+                <p class="text-lg">{{distributor?.emailAddress}}</p>
+            </div>
+        </section>
+
+        <section *ngIf="isShowContactForm">
+            <form [formGroup]="contactDetailForm" style="width: 400px;" 
+                class="mx-auto bg-white 
+                p-4 space-y-2 shadow-md" autocomplete="off"
+                (ngSubmit)="saveContactDetails()">
+                <h2>Change Contact Details</h2>
+                <mat-form-field appearance="outline" class="block w-full">
+                    <mat-label>Phone Number</mat-label>
+                    <input matInput required formControlName="phoneNumber" />
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="block w-full">
+                    <mat-label>Email Address</mat-label>
+                    <input matInput required formControlName="emailAddress" />
+                </mat-form-field>
+
+                <div class="text-center">
+                    <button mat-raised-button 
+                        color="primary"
+                        [disabled]="isChangingContactDetails">
+                        UPDATE CONTACT DETAILS
+                    </button>
+                </div>
+            </form>
+        </section>
+    </section>
+    
+    <section class="border-b pb-4 space-y-4">
+        <span class="flex items-center justify-between space-x-4">
+            <p class="font-medium">Bank Details</p>
+            <button mat-raised-button (click)="toggleBankForm()">Edit Bank Details</button>
+        </span>
+
+        <section class="grid grid-cols-3 gap-8 relative">
+            <div class="bg-white shadow-md rounded-md p-6">
+                <p class="font-light">Bank Name</p>
+                <p class="text-lg">{{distributor?.bankName}}</p>
+            </div>
+            <div class="bg-white shadow-md rounded-md p-6">
+                <p class="font-light">Account Number</p>
+                <p class="text-lg">{{distributor?.accountNumber}}</p>
+            </div>
+            <div class="bg-white shadow-md rounded-md p-6">
+                <p class="font-light">Swift Code</p>
+                <p class="text-lg">{{distributor?.swiftCode}}</p>
+            </div>
+        </section>
+
+        <section *ngIf="isShowBankForm">
+            <form [formGroup]="bankDetailForm" style="width: 400px;" 
+                class="mx-auto bg-white 
+                p-4 space-y-2 shadow-md" autocomplete="off"
+                (ngSubmit)="saveBankDetails()">
+                <h2>Change Bank Details</h2>
+                <mat-form-field appearance="outline" class="block w-full">
+                    <mat-label>Bank Name</mat-label>
+                    <input matInput required formControlName="bankName" />
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="block w-full">
+                    <mat-label>Account Number</mat-label>
+                    <input matInput required formControlName="accountNumber" />
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="block w-full">
+                    <mat-label>Swift Code</mat-label>
+                    <input matInput required formControlName="swiftCode" />
+                </mat-form-field>
+
+                <div class="text-center">
+                    <button mat-raised-button 
+                        color="primary"
+                        [disabled]="isChangingBankDetails">
+                        UPDATE BANK DETAILS
+                    </button>
+                </div>
+            </form>
+        </section>
+    </section>
+
 </section>

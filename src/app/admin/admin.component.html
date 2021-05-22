@@ -4,16 +4,16 @@
         <span class="mr-auto"></span>
         <div class="flex items-center space-x-4">
             <a routerLink="profile">
-                <div>
+                <div class="bg-red-800 py-2 px-4 rounded-md">
                     <p class="text-xs font-light">Logged In</p>
                     <p class="text-xs font-medium" style="margin: 0;">
                         {{admin?.firstName}} {{admin?.lastName}}
                     </p>
                 </div>
             </a>
-            <a routerLink="settings" mat-icon-button>
+            <!-- <a routerLink="settings" mat-icon-button>
                 <mat-icon>settings</mat-icon>
-            </a>
+            </a> -->
         </div>
     </span>
 </mat-toolbar>
@@ -33,11 +33,17 @@
                         <li>
                             <a mat-button routerLink="users">All User</a>
                         </li>
+                        <li>
+                            <a mat-button routerLink="distributors">All Distributors</a>
+                        </li>
                     </ul>
                 </section>
                 <section>
                     <p>Messages</p>
                     <ul class="space-y-2">
+                        <li>
+                            <a mat-button routerLink="general-messaging">General Message</a>
+                        </li>
                         <li>
                             <a mat-button routerLink="messages">View Messages</a>
                         </li>

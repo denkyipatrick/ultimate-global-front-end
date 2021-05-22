@@ -10,6 +10,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
   levels: any[];
+  distributor: any;
+  latestNews: any;
+
   loggedInDistributor: any;
   generationDownLines: any[];
 
@@ -17,7 +20,9 @@ export class DashboardComponent implements OnInit {
     private distributorService: DistributorService,
     private router: Router 
     ) {
+    this.distributor = this.distributorService.distributor;
     this.loggedInDistributor = distributorService.distributor;
+    this.latestNews = JSON.parse(localStorage.getItem('latest-news'));
   }
 
   ngOnInit(): void {
@@ -27,7 +32,6 @@ export class DashboardComponent implements OnInit {
   getDistributorLevels() {
     this.utilityService.getDistributorLevels()
     .subscribe(levels => {
-      console.log(levels);
       this.levels = levels;
     }, error => {
       console.error(error);

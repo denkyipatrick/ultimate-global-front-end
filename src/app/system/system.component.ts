@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 import { DistributorService } from '../services/distributor.service';
 import { UtilityService } from '../services/utility.service';
 
@@ -11,21 +11,21 @@ import { UtilityService } from '../services/utility.service';
 export class SystemComponent implements OnInit {
   levels: any[];
   notifications: any[];
+  appTitleBarName: string = environment.appName;
 
   isShowNotificationPopup: boolean;
 
   loggedInDistributor: any;
   generationDownLines: any[];
 
-  constructor(private utilityService: UtilityService, 
-    private distributorService: DistributorService,
-    private router: Router 
+  constructor(
+    private utilityService: UtilityService, 
+    private distributorService: DistributorService
     ) {
     this.loggedInDistributor = distributorService.distributor;
   }
 
   ngOnInit(): void {
-    console.log(this.loggedInDistributor);
     this.getDistributorLevels();
     this.fetchNotifications();
   }
@@ -55,7 +55,7 @@ export class SystemComponent implements OnInit {
   }
 
   loadLevelDownLines(stage: string) {
-    location.href = `/distributors/${this.loggedInDistributor.username}/generation/${stage}`
+    location.href = `/system/distributors/${this.loggedInDistributor.username}/generation/${stage}`
   }
 
 }

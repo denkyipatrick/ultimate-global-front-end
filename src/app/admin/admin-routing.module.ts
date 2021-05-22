@@ -1,6 +1,8 @@
+import { DistributorDetailComponent } from './distributor-detail/distributor-detail.component';
+import { DistributorsComponent } from './distributors/distributors.component';
+import { GeneralMessagingComponent } from './general-messaging/general-messaging.component';
 import { MessageDetailComponent } from './message-detail/message-detail.component';
 import { MessagingComponent } from './messaging/messaging.component';
-import { NewDepositComponent } from './../system/new-deposit/new-deposit.component';
 import { TransactionDetailComponent } from './transaction-detail/transaction-detail.component';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import { UserListComponent } from './user-list/user-list.component';
@@ -12,12 +14,17 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { AdminComponent } from './admin.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { NewDepositComponent } from './new-deposit/new-deposit.component';
 
 const routes: Routes = [
   { path: '', component: AdminComponent, children: [
     { path: 'sign-in', component: SignInComponent },
     { path: 'users', component: UserListComponent },
+    { path: 'distributors', component: DistributorsComponent, children: [      
+      { path: ':username', component: DistributorDetailComponent },
+    ] },
     { path: 'profile', component: AdminProfileComponent },
+    { path: 'general-messaging', component: GeneralMessagingComponent },
     { path: 'messages', component: MessagingComponent, children: [
       { path: ':id', component: MessageDetailComponent }
     ] },

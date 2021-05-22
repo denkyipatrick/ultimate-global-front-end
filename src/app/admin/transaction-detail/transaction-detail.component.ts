@@ -69,7 +69,7 @@ export class TransactionDetailComponent implements OnInit {
 
     this.adminService.fetchTransaction(this.transactionId)
     .subscribe(transaction => {
-      console.log(transaction);
+      // console.log(transaction);
 
       this.transactionDate = new Date(transaction.createdAt).toDateString();
       this.isFetchingTransaction = false;

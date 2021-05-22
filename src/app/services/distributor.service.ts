@@ -1,3 +1,4 @@
+import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ConstantsService } from './constants.service';
@@ -9,8 +10,26 @@ import { Injectable } from '@angular/core';
 export class DistributorService {
   distributor: any;
 
-  constructor(private constants: ConstantsService, private http: HttpClient) {
+  constructor(
+    private constants: ConstantsService, 
+    private http: HttpClient, 
+    private router: Router) {
     this.distributor = JSON.parse(localStorage.getItem('distributor'));
+
+    if (!this.distributor && !(window.location.href.indexOf('sign-in') > -1)) {
+      // alert('Your session has expired. Please sign in.');
+      // this.router.navigate(['/']);
+    }
+  }
+  
+  changeContactDetails(username: string, data: any) {
+    return this.http.patch<any>(`${this.constants.DISTRIBUTORS_URL}/` + 
+    `${username}/change-contact-details`, data);    
+  }
+
+  changeBankDetails(username: string, data: any) {
+    return this.http.patch<any>(`${this.constants.DISTRIBUTORS_URL}/` + 
+    `${username}/change-bank-details`, data);    
   }
 
   changeName(username: string, data: any) {

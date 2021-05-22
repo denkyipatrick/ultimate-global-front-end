@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  appName: 'Our System',
   apiUrl: 'http://localhost:4700/api'
 };
 

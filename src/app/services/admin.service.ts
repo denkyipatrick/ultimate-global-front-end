@@ -36,6 +36,14 @@ export class AdminService {
     `${username}/change-password`, data);
   }
 
+  fetchDistributors() {
+    return this.http.get<any[]>(`${this.constants.DISTRIBUTORS_URL}`);
+  }
+
+  fetchDistributor(username: string) {
+    return this.http.get<any>(`${this.constants.DISTRIBUTORS_URL}/${username}`);    
+  }
+
   fetchDepositTransactions() {
     return this.http.get<any[]>(`${this.constants.ADMINS_URL}/` + 
     `wallet-transactions/deposits`);
@@ -58,6 +66,14 @@ export class AdminService {
 
   replyMessage(data: any) {
     return this.http.post<any>(`${this.constants.NOTIFICATIONS_URL}`, data);
+  }
+
+  postGeneralNews(data: any) {
+    return this.http.post<any>(`${this.constants.ADMIN_NEWS_URL}`, data);    
+  }
+
+  fetchLatestAdminNews() {
+    return this.http.get<any>(`${this.constants.ADMIN_NEWS_URL}/latest`);
   }
 
   fetchMessages() {

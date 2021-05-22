@@ -1,26 +1,32 @@
 
-
+<header style="height: 64px;"
+    class="bg-blue-800 text-center flex items-center justify-center text-white">
+    <h1>{{appTitleBarName}}</h1>
+</header>
 <div>
     <form [formGroup]="form" 
         (ngSubmit)="signIn()"
-        class="mx-auto border-2" style="width: 500px;">
-        <mat-progress-bar *ngIf="isAuthenticating" mode="indeterminate"
-        ></mat-progress-bar>
+        class="mx-auto p-8 rounded-md border mt-8 shadow-lg bg-white" style="width: 400px;">
+        <mat-progress-bar *ngIf="isAuthenticating" mode="indeterminate">
+        </mat-progress-bar>
 
-        <h1>Sign In</h1>
-        <span class="space-x-4">
-            <mat-form-field>
+        <h2 class="text-center">Sign In</h2>
+        <span class="grid gap-y-4">
+            <mat-form-field appearance="outline" class="w-full">
                 <mat-label>Username</mat-label>
-                <input matInput formControlName="username" />
+                <input #username matInput formControlName="username" />
+                <mat-error *ngIf="!username.value">Please enter your username.</mat-error>
             </mat-form-field>
-            <mat-form-field>
+            <mat-form-field appearance="outline" class="w-full">
                 <mat-label>Password</mat-label>
-                <input matInput type="password" formControlName="password" />
+                <input #password matInput required type="password" formControlName="password" />
+                <mat-error *ngIf="!password.value">Please enter your password.</mat-error>
             </mat-form-field>
         </span>
 
-        <div>
-            <button mat-button>Sign In</button>
+        <div class="text-center my-2">
+            <p class="text-red-600 font-medium" style="margin-bottom: .5rem;">{{authError}}</p>
+            <button mat-raised-button color="primary">Sign In</button>
         </div>
     </form>
 </div>
