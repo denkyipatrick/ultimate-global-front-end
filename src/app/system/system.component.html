@@ -1,13 +1,13 @@
 <header>
     <section>
-        <mat-toolbar color="primary">
+        <mat-toolbar color="primary" class="overflow-x-hidden">
             <div class="row flex items-center mx-auto">
                 <p class="text-2xl font-light">
                    {{appTitleBarName}}
                 </p>
                 <span class='mr-auto'></span>
                 <div class="flex items-center space-x-4">
-                    <span class="flex items-center space-x-2">
+                    <span class="hidden md:flex items-center space-x-2">
                         <mat-icon>money</mat-icon> 
                         <p class="font-light">
                             ${{loggedInDistributor?.wallet?.balance?.toFixed(2)}}
@@ -20,9 +20,9 @@
                         </button>
 
                         <div *ngIf="isShowNotificationPopup" 
-                            style="width: 400px; height: 400px;"
+                            style="width: 400px; height: 400px; z-index: 1000;"
                             class="absolute top-full right-0 bg-white 
-                            z-20 shadow-md text-black overflow-y-hidden">
+                            shadow-md text-black overflow-y-hidden">
                             <p class="text-xl font-medium p-4 shadow-sm">Notifications</p>
 
                             <ul class="h-full overflow-y-auto overscroll-y-none">
@@ -58,7 +58,17 @@
                         </button>
 
                         <mat-menu #menu>
-                            <a href="/sign-in" mat-menu-item>Sign Out</a>
+                            <button mat-menu-item>
+                                <span class="flex items-center space-x-2 md:hidden">
+                                    <mat-icon>money</mat-icon> 
+                                    <p class="font-light">
+                                        ${{loggedInDistributor?.wallet?.balance?.toFixed(2)}}
+                                    </p>
+                                </span>
+                            </button>
+                            <button mat-menu-item>
+                                <a href="/sign-in" mat-menu-item>Sign Out</a>
+                            </button>
                         </mat-menu>
                     </span>
                 </div>
@@ -68,7 +78,7 @@
 </header>
 
 <mat-drawer-container class="row mx-auto" style="height: 90vh;">
-    <mat-drawer opened mode="side" style="width: 350px;">
+    <mat-drawer opened mode="side" class="w-0 lg:w-3/12 sm:hidden">
         <div class="h-full p-4 text-black">
             <mat-accordion>
                 <mat-expansion-panel [expanded]="true">

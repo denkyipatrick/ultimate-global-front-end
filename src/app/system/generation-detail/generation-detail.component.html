@@ -1,686 +1,512 @@
 
-<div *ngIf="selectedStageGeneration" class="container four-level-org">
-    <div class="level-1 rectangle">
-      <span href="../" *ngIf="upLineGeneration">
-          <img [src]="dpPhotoUrl" />
-          <h4>
-              {{upLineGeneration?.distributor.firstName || 'First Name'}} 
-              {{upLineGeneration?.distributor.lastName || 'Last Name'}}
-          </h4>
-          <h5>{{upLineGeneration?.distributor.username}}</h5>
-          <p class="text-xs">{{selectedStageGeneration}}</p>
-          <div class="distributor-info">
+
+
+<div *ngIf="selectedStageGeneration">
+    <div style="min-width: 500px;" 
+        class="container four-level-org overflow-x-auto">
+        <div class="level-1 rectangle">
+          <span href="../" *ngIf="upLineGeneration">
+              <img [src]="dpPhotoUrl" />
               <h4>
                   {{upLineGeneration?.distributor.firstName || 'First Name'}} 
                   {{upLineGeneration?.distributor.lastName || 'Last Name'}}
               </h4>
-              <p>{{upLineGeneration?.distributor.username}}</p>
-              <p>Current Level: {{upLineGeneration?.distributor?.stage?.name}}</p>
-          </div>
-      </span>
-      
-      <span *ngIf="!upLineGeneration">
-          <img [src]="unAvailableDownLinePhotoUrl" />
-          <h4></h4>
-          <p class="text-xs">N/A</p>
-      </span>
-    </div>
-    <ol class="level-2-wrapper">
-        <!-- level 2 left child-->
-        <li>
-          <div class="level-2 rectangle">
-            <a *ngIf="upLineGeneration?.downLines[0]"
-                [href]="'/system/distributors/' + 
-                    upLineGeneration?.downLines[0]?.distributor.username + 
-                    '/generation/' + selectedStageGeneration">
-                <img [src]="dpPhotoUrl" />
-                <h4>
-                    {{upLineGeneration?.downLines[0]?.distributor.firstName || 'First Name'}} 
-                    {{upLineGeneration?.downLines[0]?.distributor.lastName || 'Last Name'}}
-                </h4>
-                <h5>{{upLineGeneration?.downLines[0]?.distributor.username}}</h5>
-                <p class="text-xs">{{selectedStageGeneration}}</p>
-                <div class="distributor-info">
+              <h5>{{upLineGeneration?.distributor.username}}</h5>
+              <p class="text-xs">{{selectedStageGeneration}}</p>
+              <div class="distributor-info">
+                  <h4>
+                      {{upLineGeneration?.distributor.firstName || 'First Name'}} 
+                      {{upLineGeneration?.distributor.lastName || 'Last Name'}}
+                  </h4>
+                  <p>{{upLineGeneration?.distributor.username}}</p>
+                  <p>Current Level: {{upLineGeneration?.distributor?.stage?.name}}</p>
+              </div>
+          </span>
+          
+          <span *ngIf="!upLineGeneration">
+              <img [src]="unAvailableDownLinePhotoUrl" />
+              <h4></h4>
+              <p class="text-xs">N/A</p>
+          </span>
+        </div>
+        <ol class="level-2-wrapper">
+            <!-- level 2 left child-->
+            <li>
+              <div class="level-2 rectangle">
+                <a *ngIf="upLineGeneration?.downLines[0]"
+                    [href]="'/system/distributors/' + 
+                        upLineGeneration?.downLines[0]?.distributor.username + 
+                        '/generation/' + selectedStageGeneration">
+                    <img [src]="dpPhotoUrl" />
                     <h4>
                         {{upLineGeneration?.downLines[0]?.distributor.firstName || 'First Name'}} 
                         {{upLineGeneration?.downLines[0]?.distributor.lastName || 'Last Name'}}
                     </h4>
-                    <p>{{upLineGeneration?.downLines[0]?.distributor.username}}</p>
-                    <p>Current Level: {{upLineGeneration?.downLines[0]?.distributor?.stage?.name}}</p>
-                </div>
-            </a>
-            
-            <span *ngIf="!upLineGeneration?.downLines[0]">
-                <img [src]="unAvailableDownLinePhotoUrl" />
-                <h4></h4>
-                <p class="text-xs">N/A</p>
-            </span>
-          </div>
-          <!-- level three -->
-          <ol class="level-3-wrapper">
-            <!-- level three left child -->
-            <li>
-                <div class="level-3 rectangle">
-                  <a 
-                    *ngIf="upLineGeneration?.downLines[0]?.downLines[0]"
-                    [href]="'/system/distributors/' + 
-                        upLineGeneration?.downLines[0]?.downLines[0]?.distributor.username + 
-                        '/generation/' + selectedStageGeneration">
-                        <img [src]="dpPhotoUrl" />
+                    <h5>{{upLineGeneration?.downLines[0]?.distributor.username}}</h5>
+                    <p class="text-xs">{{selectedStageGeneration}}</p>
+                    <div class="distributor-info">
                         <h4>
-                            {{upLineGeneration?.downLines[0]?.downLines[0]?.distributor.firstName || 'First Name'}} 
-                            {{upLineGeneration?.downLines[0]?.downLines[0]?.distributor.lastName || 'Last Name'}}
+                            {{upLineGeneration?.downLines[0]?.distributor.firstName || 'First Name'}} 
+                            {{upLineGeneration?.downLines[0]?.distributor.lastName || 'Last Name'}}
                         </h4>
-                        <h5>{{upLineGeneration?.downLines[0]?.downLines[0]?.distributor.username}}</h5>
-                        <p class="text-xs">{{selectedStageGeneration}}</p>
-                        <div class="distributor-info">
+                        <p>{{upLineGeneration?.downLines[0]?.distributor.username}}</p>
+                        <p>Current Level: {{upLineGeneration?.downLines[0]?.distributor?.stage?.name}}</p>
+                    </div>
+                </a>
+                
+                <span *ngIf="!upLineGeneration?.downLines[0]">
+                    <img [src]="unAvailableDownLinePhotoUrl" />
+                    <h4></h4>
+                    <p class="text-xs">N/A</p>
+                </span>
+              </div>
+              <!-- level three -->
+              <ol class="level-3-wrapper">
+                <!-- level three left child -->
+                <li>
+                    <div class="level-3 rectangle">
+                      <a 
+                        *ngIf="upLineGeneration?.downLines[0]?.downLines[0]"
+                        [href]="'/system/distributors/' + 
+                            upLineGeneration?.downLines[0]?.downLines[0]?.distributor.username + 
+                            '/generation/' + selectedStageGeneration">
+                            <img [src]="dpPhotoUrl" />
                             <h4>
                                 {{upLineGeneration?.downLines[0]?.downLines[0]?.distributor.firstName || 'First Name'}} 
                                 {{upLineGeneration?.downLines[0]?.downLines[0]?.distributor.lastName || 'Last Name'}}
                             </h4>
-                            <p>{{upLineGeneration?.downLines[0]?.downLines[0]?.distributor.username}}</p>
-                            <p>Current Level: {{upLineGeneration?.downLines[0]?.downLines[0]?.distributor?.stage?.name}}</p>
-                        </div>
-                  </a>
-                  
-                  <span *ngIf="!upLineGeneration?.downLines[0]?.downLines[0]">
-                      <img [src]="unAvailableDownLinePhotoUrl" />
-                      <h4></h4>
-                      <p class="text-xs">N/A</p>
-                  </span>
-                </div>
-                <!-- level four -->
-                <ol class="level-4-wrapper" *ngIf="selectedStageGeneration != 'Starter'">
-                  <!-- level four left child -->
-                  <li>
-                      <div class="level-4 rectangle">
-                        <a 
-                            [href]="'/system/distributors/' + 
-                            upLineGeneration?.downLines[0]?.downLines[0]?.downLines[0]?.distributor?.username + 
-                            '/generation/' + selectedStageGeneration"
-                            *ngIf="upLineGeneration?.downLines[0]?.downLines[0]?.downLines[0]">
-                            <img [src]="dpPhotoUrl" />
-                            <h4>
-                                {{upLineGeneration?.downLines[0]?.downLines[0]?.downLines[0]?.distributor.firstName || 'First Name'}} 
-                                {{upLineGeneration?.downLines[0]?.downLines[0]?.downLines[0]?.distributor.lastName || 'Last Name'}}
-                            </h4>
-                            <h5>{{upLineGeneration?.downLines[0]?.downLines[0]?.downLines[0]?.distributor.username}}</h5>
+                            <h5>{{upLineGeneration?.downLines[0]?.downLines[0]?.distributor.username}}</h5>
                             <p class="text-xs">{{selectedStageGeneration}}</p>
-
                             <div class="distributor-info">
+                                <h4>
+                                    {{upLineGeneration?.downLines[0]?.downLines[0]?.distributor.firstName || 'First Name'}} 
+                                    {{upLineGeneration?.downLines[0]?.downLines[0]?.distributor.lastName || 'Last Name'}}
+                                </h4>
+                                <p>{{upLineGeneration?.downLines[0]?.downLines[0]?.distributor.username}}</p>
+                                <p>Current Level: {{upLineGeneration?.downLines[0]?.downLines[0]?.distributor?.stage?.name}}</p>
+                            </div>
+                      </a>
+                      
+                      <span *ngIf="!upLineGeneration?.downLines[0]?.downLines[0]">
+                          <img [src]="unAvailableDownLinePhotoUrl" />
+                          <h4></h4>
+                          <p class="text-xs">N/A</p>
+                      </span>
+                    </div>
+                    <!-- level four -->
+                    <ol class="level-4-wrapper" *ngIf="selectedStageGeneration != 'Starter'">
+                      <!-- level four left child -->
+                      <li>
+                          <div class="level-4 rectangle">
+                            <a 
+                                [href]="'/system/distributors/' + 
+                                upLineGeneration?.downLines[0]?.downLines[0]?.downLines[0]?.distributor?.username + 
+                                '/generation/' + selectedStageGeneration"
+                                *ngIf="upLineGeneration?.downLines[0]?.downLines[0]?.downLines[0]">
+                                <img [src]="dpPhotoUrl" />
                                 <h4>
                                     {{upLineGeneration?.downLines[0]?.downLines[0]?.downLines[0]?.distributor.firstName || 'First Name'}} 
                                     {{upLineGeneration?.downLines[0]?.downLines[0]?.downLines[0]?.distributor.lastName || 'Last Name'}}
                                 </h4>
-                                <p>{{upLineGeneration?.downLines[0]?.downLines[0]?.downLines[0]?.distributor.username}}</p>
-                                <p>Current Level: {{upLineGeneration?.downLines[0]?.downLines[0]?.downLines[0]?.distributor?.stage?.name}}</p>
-                            </div>
-                        </a>
-                        
-                        <span *ngIf="!upLineGeneration?.downLines[0]?.downLines[0]?.downLines[0]">
-                            <img [src]="unAvailableDownLinePhotoUrl" />
-                            <h4></h4>
-                            <p class="text-xs">N/A</p>
-                        </span>
-                      </div>
-                  </li>
-                  <!-- level four right child -->
-                  <li>
-                      <div class="level-4 rectangle">
-                        <a 
-                            [href]="'/system/distributors/' + 
-                                upLineGeneration?.downLines[0]?.downLines[0]?.downLines[1]?.distributor.username + 
-                                '/generation/' + selectedStageGeneration"
-                            *ngIf="upLineGeneration?.downLines[0]?.downLines[0]?.downLines[1]">
-                            <img [src]="dpPhotoUrl" />
-                            <h4>
-                                {{upLineGeneration?.downLines[0]?.downLines[0]?.downLines[1]?.distributor.firstName || 'First Name'}} 
-                                {{upLineGeneration?.downLines[0]?.downLines[0]?.downLines[1]?.distributor.lastName || 'Last Name'}}
-                            </h4>
-                            <h5>{{upLineGeneration?.downLines[0]?.downLines[0]?.downLines[1]?.distributor.username}}</h5>
-                            <p class="text-xs">{{selectedStageGeneration}}</p>
-
-                            <div class="distributor-info">
+                                <h5>{{upLineGeneration?.downLines[0]?.downLines[0]?.downLines[0]?.distributor.username}}</h5>
+                                <p class="text-xs">{{selectedStageGeneration}}</p>
+    
+                                <div class="distributor-info">
+                                    <h4>
+                                        {{upLineGeneration?.downLines[0]?.downLines[0]?.downLines[0]?.distributor.firstName || 'First Name'}} 
+                                        {{upLineGeneration?.downLines[0]?.downLines[0]?.downLines[0]?.distributor.lastName || 'Last Name'}}
+                                    </h4>
+                                    <p>{{upLineGeneration?.downLines[0]?.downLines[0]?.downLines[0]?.distributor.username}}</p>
+                                    <p>Current Level: {{upLineGeneration?.downLines[0]?.downLines[0]?.downLines[0]?.distributor?.stage?.name}}</p>
+                                </div>
+                            </a>
+                            
+                            <span *ngIf="!upLineGeneration?.downLines[0]?.downLines[0]?.downLines[0]">
+                                <img [src]="unAvailableDownLinePhotoUrl" />
+                                <h4></h4>
+                                <p class="text-xs">N/A</p>
+                            </span>
+                          </div>
+                      </li>
+                      <!-- level four right child -->
+                      <li>
+                          <div class="level-4 rectangle">
+                            <a 
+                                [href]="'/system/distributors/' + 
+                                    upLineGeneration?.downLines[0]?.downLines[0]?.downLines[1]?.distributor.username + 
+                                    '/generation/' + selectedStageGeneration"
+                                *ngIf="upLineGeneration?.downLines[0]?.downLines[0]?.downLines[1]">
+                                <img [src]="dpPhotoUrl" />
                                 <h4>
                                     {{upLineGeneration?.downLines[0]?.downLines[0]?.downLines[1]?.distributor.firstName || 'First Name'}} 
                                     {{upLineGeneration?.downLines[0]?.downLines[0]?.downLines[1]?.distributor.lastName || 'Last Name'}}
                                 </h4>
-                                <p>{{upLineGeneration?.downLines[0]?.downLines[0]?.downLines[1]?.distributor.username}}</p>
-                                <p>Current Level: {{upLineGeneration?.downLines[0]?.downLines[0]?.downLines[1]?.distributor?.stage?.name}}</p>
-                            </div>
-                        </a>
-                        
-                        <span *ngIf="!upLineGeneration?.downLines[0]?.downLines[0]?.downLines[1]">
-                            <img [src]="unAvailableDownLinePhotoUrl" />
-                            <h4></h4>
-                            <p class="text-xs">N/A</p>
-                        </span>
-                      </div>
-                  </li>
-                </ol>
-            </li>
-            <!-- level three right child -->
-            <li>
-                <div class="level-3 rectangle">
-                    <a 
-                        [href]="'/system/distributors/' + 
-                            upLineGeneration?.downLines[0]?.downLines[1]?.distributor.username + 
-                            '/generation/' + selectedStageGeneration"
-                        *ngIf="upLineGeneration?.downLines[0]?.downLines[1]">
-                        <img [src]="dpPhotoUrl" />
-                        <h4>
-                            {{upLineGeneration?.downLines[0]?.downLines[1]?.distributor.firstName || 'First Name'}} 
-                            {{upLineGeneration?.downLines[0]?.downLines[1]?.distributor.lastName || 'Last Name'}}
-                        </h4>
-                        <h5>{{upLineGeneration?.downLines[0]?.downLines[1]?.distributor.username}}</h5>
-                        <p class="text-xs">{{selectedStageGeneration}}</p>
-                        <div class="distributor-info">
+                                <h5>{{upLineGeneration?.downLines[0]?.downLines[0]?.downLines[1]?.distributor.username}}</h5>
+                                <p class="text-xs">{{selectedStageGeneration}}</p>
+    
+                                <div class="distributor-info">
+                                    <h4>
+                                        {{upLineGeneration?.downLines[0]?.downLines[0]?.downLines[1]?.distributor.firstName || 'First Name'}} 
+                                        {{upLineGeneration?.downLines[0]?.downLines[0]?.downLines[1]?.distributor.lastName || 'Last Name'}}
+                                    </h4>
+                                    <p>{{upLineGeneration?.downLines[0]?.downLines[0]?.downLines[1]?.distributor.username}}</p>
+                                    <p>Current Level: {{upLineGeneration?.downLines[0]?.downLines[0]?.downLines[1]?.distributor?.stage?.name}}</p>
+                                </div>
+                            </a>
+                            
+                            <span *ngIf="!upLineGeneration?.downLines[0]?.downLines[0]?.downLines[1]">
+                                <img [src]="unAvailableDownLinePhotoUrl" />
+                                <h4></h4>
+                                <p class="text-xs">N/A</p>
+                            </span>
+                          </div>
+                      </li>
+                    </ol>
+                </li>
+                <!-- level three right child -->
+                <li>
+                    <div class="level-3 rectangle">
+                        <a 
+                            [href]="'/system/distributors/' + 
+                                upLineGeneration?.downLines[0]?.downLines[1]?.distributor.username + 
+                                '/generation/' + selectedStageGeneration"
+                            *ngIf="upLineGeneration?.downLines[0]?.downLines[1]">
+                            <img [src]="dpPhotoUrl" />
                             <h4>
                                 {{upLineGeneration?.downLines[0]?.downLines[1]?.distributor.firstName || 'First Name'}} 
                                 {{upLineGeneration?.downLines[0]?.downLines[1]?.distributor.lastName || 'Last Name'}}
                             </h4>
-                            <p>{{upLineGeneration?.downLines[0]?.downLines[1]?.distributor.username}}</p>
-                            <p>Current Level: {{upLineGeneration?.downLines[1]?.downLines[1]?.distributor?.stage?.name}}</p>
+                            <h5>{{upLineGeneration?.downLines[0]?.downLines[1]?.distributor.username}}</h5>
+                            <p class="text-xs">{{selectedStageGeneration}}</p>
+                            <div class="distributor-info">
+                                <h4>
+                                    {{upLineGeneration?.downLines[0]?.downLines[1]?.distributor.firstName || 'First Name'}} 
+                                    {{upLineGeneration?.downLines[0]?.downLines[1]?.distributor.lastName || 'Last Name'}}
+                                </h4>
+                                <p>{{upLineGeneration?.downLines[0]?.downLines[1]?.distributor.username}}</p>
+                                <p>Current Level: {{upLineGeneration?.downLines[1]?.downLines[1]?.distributor?.stage?.name}}</p>
+                            </div>
+                        </a>
+                        
+                        <span *ngIf="!upLineGeneration?.downLines[0]?.downLines[1]">
+                            <img [src]="unAvailableDownLinePhotoUrl" />
+                            <h4></h4>
+                            <p class="text-xs">N/A</p>
+                        </span>
+                    </div>
+                    
+                    <!-- level four -->
+                    <ol class="level-4-wrapper" *ngIf="selectedStageGeneration != 'Starter'">
+                        <!-- left -->
+                        <li>
+                            <div class="level-4 rectangle">
+                                <a 
+                                    [href]="'/system/distributors/' + 
+                                        upLineGeneration?.downLines[0]?.downLines[1]?.downLines[0]?.distributor.username + 
+                                        '/generation/' + selectedStageGeneration"
+                                    *ngIf="upLineGeneration?.downLines[0]?.downLines[1]?.downLines[0]">
+                                    <img [src]="dpPhotoUrl" />
+                                    <h4>
+                                        {{upLineGeneration?.downLines[0]?.downLines[1]?.downLines[0]?.distributor.firstName || 'First Name'}} 
+                                        {{upLineGeneration?.downLines[0]?.downLines[1]?.downLines[0]?.distributor.lastName || 'Last Name'}}
+                                    </h4>
+                                    <h5>{{upLineGeneration?.downLines[0]?.downLines[1]?.downLines[0]?.distributor.username}}</h5>
+                                    <p class="text-xs">{{selectedStageGeneration}}</p>
+    
+                                    <div class="distributor-info">
+                                        <h4>
+                                            {{upLineGeneration?.downLines[0]?.downLines[1]?.downLines[0]?.distributor.firstName || 'First Name'}} 
+                                            {{upLineGeneration?.downLines[0]?.downLines[1]?.downLines[0]?.distributor.lastName || 'Last Name'}}
+                                        </h4>
+                                        <p>{{upLineGeneration?.downLines[0]?.downLines[1]?.downLines[0]?.distributor.username}}</p>
+                                        <p>Current Level: {{upLineGeneration?.downLines[0]?.downLines[1]?.downLines[0]?.distributor?.stage?.name}}</p>
+                                    </div>
+                                </a>
+                                
+                                <span *ngIf="!upLineGeneration?.downLines[0]?.downLines[1]?.downLines[0]">
+                                    <img [src]="unAvailableDownLinePhotoUrl" />
+                                    <h4></h4>
+                                    <p class="text-xs">N/A</p>
+                                </span>
+                            </div>
+                        </li>
+                        <!-- right -->
+                        <li>
+                            <div class="level-4 rectangle">
+                                <a 
+                                    [href]="'/system/distributors/' + 
+                                        upLineGeneration?.downLines[0]?.downLines[1]?.downLines[1]?.distributor.username + 
+                                        '/generation/' + selectedStageGeneration"
+                                    *ngIf="upLineGeneration?.downLines[0]?.downLines[1]?.downLines[1]">
+                                    <img [src]="dpPhotoUrl" />
+                                    <!-- <h4>{{upLineGeneration?.downLines[0]?.downLines[1]?.downLines[1]?.distributor.username}}</h4>
+                                    <p class="text-xs">{{selectedStageGeneration}}</p> -->
+                                    <h4>
+                                        {{upLineGeneration?.downLines[0]?.downLines[1]?.downLines[1]?.distributor.firstName || 'First Name'}} 
+                                        {{upLineGeneration?.downLines[0]?.downLines[1]?.downLines[1]?.distributor.lastName || 'Last Name'}}
+                                    </h4>
+                                    <h5>{{upLineGeneration?.downLines[0]?.downLines[1]?.downLines[1]?.distributor.username}}</h5>
+                                    <p class="text-xs">{{selectedStageGeneration}}</p>
+    
+                                    <div class="distributor-info">
+                                        <h4>
+                                            {{upLineGeneration?.downLines[0]?.downLines[1]?.downLines[1]?.distributor.firstName || 'First Name'}} 
+                                            {{upLineGeneration?.downLines[0]?.downLines[1]?.downLines[1]?.distributor.lastName || 'Last Name'}}
+                                        </h4>
+                                        <p>{{upLineGeneration?.downLines[0]?.downLines[1]?.downLines[1]?.distributor.username}}</p>
+                                        <p>Current Level: {{upLineGeneration?.downLines[0]?.downLines[1]?.downLines[1]?.distributor?.stage?.name}}</p>
+                                    </div>
+                                </a>
+                                
+                                <span *ngIf="!upLineGeneration?.downLines[0]?.downLines[1]?.downLines[1]">
+                                    <img [src]="unAvailableDownLinePhotoUrl" />
+                                    <h4></h4>
+                                    <p class="text-xs">N/A</p>
+                                </span>
+                            </div>
+                        </li>
+                      </ol>
+                </li>
+              </ol>
+            </li>
+    
+            <!-- level 2 right child -->
+            <li>
+                <div class="level-2 rectangle">
+                    <a 
+                        [href]="'/system/distributors/' + 
+                            upLineGeneration?.downLines[1]?.distributor.username + 
+                            '/generation/' + selectedStageGeneration"
+                        *ngIf="upLineGeneration?.downLines[1]">
+                        <img [src]="dpPhotoUrl" />
+                        <h4>
+                            {{upLineGeneration?.downLines[1]?.distributor.firstName || 'First Name'}} 
+                            {{upLineGeneration?.downLines[1]?.distributor.lastName || 'Last Name'}}
+                        </h4>
+                        <h5>{{upLineGeneration?.downLines[1]?.distributor.username}}</h5>
+                        <p class="text-xs">{{selectedStageGeneration}}</p>
+                        <div class="distributor-info">
+                            <h4>
+                                {{upLineGeneration?.downLines[1]?.distributor.firstName || 'First Name'}} 
+                                {{upLineGeneration?.downLines[1]?.distributor.lastName || 'Last Name'}}
+                            </h4>
+                            <p>{{upLineGeneration?.downLines[1]?.distributor.username}}</p>
+                            <p>Current Level: {{upLineGeneration?.downLines[1]?.distributor?.stage?.name}}</p>
                         </div>
                     </a>
                     
-                    <span *ngIf="!upLineGeneration?.downLines[0]?.downLines[1]">
+                    <span *ngIf="!upLineGeneration?.downLines[1]">
                         <img [src]="unAvailableDownLinePhotoUrl" />
                         <h4></h4>
                         <p class="text-xs">N/A</p>
                     </span>
                 </div>
-                
-                <!-- level four -->
-                <ol class="level-4-wrapper" *ngIf="selectedStageGeneration != 'Starter'">
-                    <!-- left -->
+                <!-- level three -->
+                <ol class="level-3-wrapper">
+                    <!-- level three left -->
                     <li>
-                        <div class="level-4 rectangle">
+                        <div class="level-3 rectangle">
                             <a 
-                                [href]="'/system/distributors/' + 
-                                    upLineGeneration?.downLines[0]?.downLines[1]?.downLines[0]?.distributor.username + 
-                                    '/generation/' + selectedStageGeneration"
-                                *ngIf="upLineGeneration?.downLines[0]?.downLines[1]?.downLines[0]">
+                            [href]="'/system/distributors/' + 
+                                upLineGeneration?.downLines[1]?.downLines[0]?.distributor.username + 
+                                '/generation/' + selectedStageGeneration"
+                            *ngIf="upLineGeneration?.downLines[1]?.downLines[0]">
                                 <img [src]="dpPhotoUrl" />
-                                <h4>
-                                    {{upLineGeneration?.downLines[0]?.downLines[1]?.downLines[0]?.distributor.firstName || 'First Name'}} 
-                                    {{upLineGeneration?.downLines[0]?.downLines[1]?.downLines[0]?.distributor.lastName || 'Last Name'}}
-                                </h4>
-                                <h5>{{upLineGeneration?.downLines[0]?.downLines[1]?.downLines[0]?.distributor.username}}</h5>
-                                <p class="text-xs">{{selectedStageGeneration}}</p>
-
-                                <div class="distributor-info">
-                                    <h4>
-                                        {{upLineGeneration?.downLines[0]?.downLines[1]?.downLines[0]?.distributor.firstName || 'First Name'}} 
-                                        {{upLineGeneration?.downLines[0]?.downLines[1]?.downLines[0]?.distributor.lastName || 'Last Name'}}
-                                    </h4>
-                                    <p>{{upLineGeneration?.downLines[0]?.downLines[1]?.downLines[0]?.distributor.username}}</p>
-                                    <p>Current Level: {{upLineGeneration?.downLines[0]?.downLines[1]?.downLines[0]?.distributor?.stage?.name}}</p>
-                                </div>
-                            </a>
-                            
-                            <span *ngIf="!upLineGeneration?.downLines[0]?.downLines[1]?.downLines[0]">
-                                <img [src]="unAvailableDownLinePhotoUrl" />
-                                <h4></h4>
-                                <p class="text-xs">N/A</p>
-                            </span>
-                        </div>
-                    </li>
-                    <!-- right -->
-                    <li>
-                        <div class="level-4 rectangle">
-                            <a 
-                                [href]="'/system/distributors/' + 
-                                    upLineGeneration?.downLines[0]?.downLines[1]?.downLines[1]?.distributor.username + 
-                                    '/generation/' + selectedStageGeneration"
-                                *ngIf="upLineGeneration?.downLines[0]?.downLines[1]?.downLines[1]">
-                                <img [src]="dpPhotoUrl" />
-                                <!-- <h4>{{upLineGeneration?.downLines[0]?.downLines[1]?.downLines[1]?.distributor.username}}</h4>
-                                <p class="text-xs">{{selectedStageGeneration}}</p> -->
-                                <h4>
-                                    {{upLineGeneration?.downLines[0]?.downLines[1]?.downLines[1]?.distributor.firstName || 'First Name'}} 
-                                    {{upLineGeneration?.downLines[0]?.downLines[1]?.downLines[1]?.distributor.lastName || 'Last Name'}}
-                                </h4>
-                                <h5>{{upLineGeneration?.downLines[0]?.downLines[1]?.downLines[1]?.distributor.username}}</h5>
-                                <p class="text-xs">{{selectedStageGeneration}}</p>
-
-                                <div class="distributor-info">
-                                    <h4>
-                                        {{upLineGeneration?.downLines[0]?.downLines[1]?.downLines[1]?.distributor.firstName || 'First Name'}} 
-                                        {{upLineGeneration?.downLines[0]?.downLines[1]?.downLines[1]?.distributor.lastName || 'Last Name'}}
-                                    </h4>
-                                    <p>{{upLineGeneration?.downLines[0]?.downLines[1]?.downLines[1]?.distributor.username}}</p>
-                                    <p>Current Level: {{upLineGeneration?.downLines[0]?.downLines[1]?.downLines[1]?.distributor?.stage?.name}}</p>
-                                </div>
-                            </a>
-                            
-                            <span *ngIf="!upLineGeneration?.downLines[0]?.downLines[1]?.downLines[1]">
-                                <img [src]="unAvailableDownLinePhotoUrl" />
-                                <h4></h4>
-                                <p class="text-xs">N/A</p>
-                            </span>
-                        </div>
-                    </li>
-                  </ol>
-            </li>
-          </ol>
-        </li>
-
-        <!-- level 2 right child -->
-        <li>
-            <div class="level-2 rectangle">
-                <a 
-                    [href]="'/system/distributors/' + 
-                        upLineGeneration?.downLines[1]?.distributor.username + 
-                        '/generation/' + selectedStageGeneration"
-                    *ngIf="upLineGeneration?.downLines[1]">
-                    <img [src]="dpPhotoUrl" />
-                    <h4>
-                        {{upLineGeneration?.downLines[1]?.distributor.firstName || 'First Name'}} 
-                        {{upLineGeneration?.downLines[1]?.distributor.lastName || 'Last Name'}}
-                    </h4>
-                    <h5>{{upLineGeneration?.downLines[1]?.distributor.username}}</h5>
-                    <p class="text-xs">{{selectedStageGeneration}}</p>
-                    <div class="distributor-info">
-                        <h4>
-                            {{upLineGeneration?.downLines[1]?.distributor.firstName || 'First Name'}} 
-                            {{upLineGeneration?.downLines[1]?.distributor.lastName || 'Last Name'}}
-                        </h4>
-                        <p>{{upLineGeneration?.downLines[1]?.distributor.username}}</p>
-                        <p>Current Level: {{upLineGeneration?.downLines[1]?.distributor?.stage?.name}}</p>
-                    </div>
-                </a>
-                
-                <span *ngIf="!upLineGeneration?.downLines[1]">
-                    <img [src]="unAvailableDownLinePhotoUrl" />
-                    <h4></h4>
-                    <p class="text-xs">N/A</p>
-                </span>
-            </div>
-            <!-- level three -->
-            <ol class="level-3-wrapper">
-                <!-- level three left -->
-                <li>
-                    <div class="level-3 rectangle">
-                        <a 
-                        [href]="'/system/distributors/' + 
-                            upLineGeneration?.downLines[1]?.downLines[0]?.distributor.username + 
-                            '/generation/' + selectedStageGeneration"
-                        *ngIf="upLineGeneration?.downLines[1]?.downLines[0]">
-                            <img [src]="dpPhotoUrl" />
-                            <h4>
-                                {{upLineGeneration?.downLines[1]?.downLines[0]?.distributor.firstName || 'First Name'}} 
-                                {{upLineGeneration?.downLines[1]?.downLines[0]?.distributor.lastName || 'Last Name'}}
-                            </h4>
-                            <h5>{{upLineGeneration?.downLines[1]?.downLines[0]?.distributor.username}}</h5>
-                            <p class="text-xs">{{selectedStageGeneration}}</p>
-                            <div class="distributor-info">
                                 <h4>
                                     {{upLineGeneration?.downLines[1]?.downLines[0]?.distributor.firstName || 'First Name'}} 
                                     {{upLineGeneration?.downLines[1]?.downLines[0]?.distributor.lastName || 'Last Name'}}
                                 </h4>
-                                <p>{{upLineGeneration?.downLines[1]?.downLines[0]?.distributor.username}}</p>
-                                <p>Current Level: {{upLineGeneration?.downLines[1]?.downLines[0]?.distributor?.stage?.name}}</p>
-                            </div>
-                        </a>
-                        
-                        <span *ngIf="!upLineGeneration?.downLines[1]?.downLines[0]">
-                            <img [src]="unAvailableDownLinePhotoUrl" />
-                            <h4></h4>
-                            <p class="text-xs">N/A</p>
-                        </span>
-                    </div>
-                    <!-- level four -->
-                    <ol class="level-4-wrapper" *ngIf="selectedStageGeneration != 'Starter'">
-                    <!-- level four left child -->
-                        <li>
-                            <div class="level-4 rectangle">
-                                <a 
-                                    [href]="'/system/distributors/' + 
-                                        upLineGeneration?.downLines[1]?.downLines[0]?.downLines[0]?.distributor.username + 
-                                        '/generation/' + selectedStageGeneration"
-                                    *ngIf="upLineGeneration?.downLines[1]?.downLines[0]?.downLines[0]">
-                                    <img [src]="dpPhotoUrl" />
+                                <h5>{{upLineGeneration?.downLines[1]?.downLines[0]?.distributor.username}}</h5>
+                                <p class="text-xs">{{selectedStageGeneration}}</p>
+                                <div class="distributor-info">
                                     <h4>
-                                        {{upLineGeneration?.downLines[1]?.downLines[0]?.downLines[0]?.distributor.firstName || 'First Name'}} 
-                                        {{upLineGeneration?.downLines[1]?.downLines[0]?.downLines[0]?.distributor.lastName || 'Last Name'}}
+                                        {{upLineGeneration?.downLines[1]?.downLines[0]?.distributor.firstName || 'First Name'}} 
+                                        {{upLineGeneration?.downLines[1]?.downLines[0]?.distributor.lastName || 'Last Name'}}
                                     </h4>
-                                    <h5>{{upLineGeneration?.downLines[1]?.downLines[0]?.downLines[0]?.distributor.username}}</h5>
-                                    <p class="text-xs">{{selectedStageGeneration}}</p>
-                                    <div class="distributor-info">
+                                    <p>{{upLineGeneration?.downLines[1]?.downLines[0]?.distributor.username}}</p>
+                                    <p>Current Level: {{upLineGeneration?.downLines[1]?.downLines[0]?.distributor?.stage?.name}}</p>
+                                </div>
+                            </a>
+                            
+                            <span *ngIf="!upLineGeneration?.downLines[1]?.downLines[0]">
+                                <img [src]="unAvailableDownLinePhotoUrl" />
+                                <h4></h4>
+                                <p class="text-xs">N/A</p>
+                            </span>
+                        </div>
+                        <!-- level four -->
+                        <ol class="level-4-wrapper" *ngIf="selectedStageGeneration != 'Starter'">
+                        <!-- level four left child -->
+                            <li>
+                                <div class="level-4 rectangle">
+                                    <a 
+                                        [href]="'/system/distributors/' + 
+                                            upLineGeneration?.downLines[1]?.downLines[0]?.downLines[0]?.distributor.username + 
+                                            '/generation/' + selectedStageGeneration"
+                                        *ngIf="upLineGeneration?.downLines[1]?.downLines[0]?.downLines[0]">
+                                        <img [src]="dpPhotoUrl" />
                                         <h4>
                                             {{upLineGeneration?.downLines[1]?.downLines[0]?.downLines[0]?.distributor.firstName || 'First Name'}} 
                                             {{upLineGeneration?.downLines[1]?.downLines[0]?.downLines[0]?.distributor.lastName || 'Last Name'}}
                                         </h4>
-                                        <p>{{upLineGeneration?.downLines[1]?.downLines[0]?.downLines[0]?.distributor.username}}</p>
-                                        <p>Current Level: {{upLineGeneration?.downLines[1]?.downLines[0]?.downLines[0]?.distributor?.stage?.name}}</p>
-                                    </div>
-                                </a>
-                                
-                                <span *ngIf="!upLineGeneration?.downLines[1]?.downLines[0]?.downLines[0]">
-                                    <img [src]="unAvailableDownLinePhotoUrl" />
-                                    <h4></h4>
-                                    <p class="text-xs">N/A</p>
-                                </span>
-                            </div>
-                        </li>
-                        <!-- level four right child -->
-                        <li>
-                            <div class="level-4 rectangle">
-                                <a 
-                                    [href]="'/system/distributors/' + 
-                                        upLineGeneration?.downLines[1]?.downLines[0]?.downLines[1]?.distributor.username + 
-                                        '/generation/' + selectedStageGeneration"
-                                    *ngIf="upLineGeneration?.downLines[1]?.downLines[0]?.downLines[1]">
-                                    <img [src]="dpPhotoUrl" />
-                                    <h4>
-                                        {{upLineGeneration?.downLines[1]?.downLines[0]?.downLines[1]?.distributor.firstName || 'First Name'}} 
-                                        {{upLineGeneration?.downLines[1]?.downLines[0]?.downLines[1]?.distributor.lastName || 'Last Name'}}
-                                    </h4>
-                                    <h5>{{upLineGeneration?.downLines[1]?.downLines[0]?.downLines[1]?.distributor.username}}</h5>
-                                    <p class="text-xs">{{selectedStageGeneration}}</p>
-                                    <div class="distributor-info">
+                                        <h5>{{upLineGeneration?.downLines[1]?.downLines[0]?.downLines[0]?.distributor.username}}</h5>
+                                        <p class="text-xs">{{selectedStageGeneration}}</p>
+                                        <div class="distributor-info">
+                                            <h4>
+                                                {{upLineGeneration?.downLines[1]?.downLines[0]?.downLines[0]?.distributor.firstName || 'First Name'}} 
+                                                {{upLineGeneration?.downLines[1]?.downLines[0]?.downLines[0]?.distributor.lastName || 'Last Name'}}
+                                            </h4>
+                                            <p>{{upLineGeneration?.downLines[1]?.downLines[0]?.downLines[0]?.distributor.username}}</p>
+                                            <p>Current Level: {{upLineGeneration?.downLines[1]?.downLines[0]?.downLines[0]?.distributor?.stage?.name}}</p>
+                                        </div>
+                                    </a>
+                                    
+                                    <span *ngIf="!upLineGeneration?.downLines[1]?.downLines[0]?.downLines[0]">
+                                        <img [src]="unAvailableDownLinePhotoUrl" />
+                                        <h4></h4>
+                                        <p class="text-xs">N/A</p>
+                                    </span>
+                                </div>
+                            </li>
+                            <!-- level four right child -->
+                            <li>
+                                <div class="level-4 rectangle">
+                                    <a 
+                                        [href]="'/system/distributors/' + 
+                                            upLineGeneration?.downLines[1]?.downLines[0]?.downLines[1]?.distributor.username + 
+                                            '/generation/' + selectedStageGeneration"
+                                        *ngIf="upLineGeneration?.downLines[1]?.downLines[0]?.downLines[1]">
+                                        <img [src]="dpPhotoUrl" />
                                         <h4>
                                             {{upLineGeneration?.downLines[1]?.downLines[0]?.downLines[1]?.distributor.firstName || 'First Name'}} 
                                             {{upLineGeneration?.downLines[1]?.downLines[0]?.downLines[1]?.distributor.lastName || 'Last Name'}}
                                         </h4>
-                                        <p>{{upLineGeneration?.downLines[1]?.downLines[0]?.downLines[1]?.distributor.username}}</p>
-                                        <p>Current Level: {{upLineGeneration?.downLines[1]?.downLines[0]?.downLines[1]?.distributor?.stage?.name}}</p>
-                                    </div>
-                                </a>
-                                
-                                <span *ngIf="!upLineGeneration?.downLines[1]?.downLines[0]?.downLines[1]">
-                                    <img [src]="unAvailableDownLinePhotoUrl" />
-                                    <h4></h4>
-                                    <p class="text-xs">N/A</p>
-                                </span>
-                            </div>
-                        </li>
-                    </ol>
-                </li>
-                <!-- level three right -->
-                <li>
-                    <div class="level-3 rectangle">
-                        <a 
-                            [href]="'/system/distributors/' + 
-                            upLineGeneration?.downLines[1]?.downLines[1]?.distributor.username + 
-                            '/generation/' + selectedStageGeneration"
-                            *ngIf="upLineGeneration?.downLines[1]?.downLines[1]">
-                            <img [src]="dpPhotoUrl" />
-                            <h4>
-                                {{upLineGeneration?.downLines[1]?.downLines[1]?.distributor.firstName || 'First Name'}} 
-                                {{upLineGeneration?.downLines[1]?.downLines[1]?.distributor.lastName || 'Last Name'}}
-                            </h4>
-                            <h5>{{upLineGeneration?.downLines[1]?.downLines[1]?.distributor.username}}</h5>
-                            <p class="text-xs">{{selectedStageGeneration}}</p>
-                            <div class="distributor-info">
+                                        <h5>{{upLineGeneration?.downLines[1]?.downLines[0]?.downLines[1]?.distributor.username}}</h5>
+                                        <p class="text-xs">{{selectedStageGeneration}}</p>
+                                        <div class="distributor-info">
+                                            <h4>
+                                                {{upLineGeneration?.downLines[1]?.downLines[0]?.downLines[1]?.distributor.firstName || 'First Name'}} 
+                                                {{upLineGeneration?.downLines[1]?.downLines[0]?.downLines[1]?.distributor.lastName || 'Last Name'}}
+                                            </h4>
+                                            <p>{{upLineGeneration?.downLines[1]?.downLines[0]?.downLines[1]?.distributor.username}}</p>
+                                            <p>Current Level: {{upLineGeneration?.downLines[1]?.downLines[0]?.downLines[1]?.distributor?.stage?.name}}</p>
+                                        </div>
+                                    </a>
+                                    
+                                    <span *ngIf="!upLineGeneration?.downLines[1]?.downLines[0]?.downLines[1]">
+                                        <img [src]="unAvailableDownLinePhotoUrl" />
+                                        <h4></h4>
+                                        <p class="text-xs">N/A</p>
+                                    </span>
+                                </div>
+                            </li>
+                        </ol>
+                    </li>
+                    <!-- level three right -->
+                    <li>
+                        <div class="level-3 rectangle">
+                            <a 
+                                [href]="'/system/distributors/' + 
+                                upLineGeneration?.downLines[1]?.downLines[1]?.distributor.username + 
+                                '/generation/' + selectedStageGeneration"
+                                *ngIf="upLineGeneration?.downLines[1]?.downLines[1]">
+                                <img [src]="dpPhotoUrl" />
                                 <h4>
                                     {{upLineGeneration?.downLines[1]?.downLines[1]?.distributor.firstName || 'First Name'}} 
                                     {{upLineGeneration?.downLines[1]?.downLines[1]?.distributor.lastName || 'Last Name'}}
                                 </h4>
-                                <p>{{upLineGeneration?.downLines[1]?.downLines[1]?.distributor.username}}</p>
-                                <p>Current Level: {{upLineGeneration?.downLines[1]?.downLines[1]?.distributor?.stage?.name}}</p>
-                            </div>
-                        </a>
-                        
-                        <span *ngIf="!upLineGeneration?.downLines[1]?.downLines[1]">
-                            <img [src]="unAvailableDownLinePhotoUrl" />
-                            <h4></h4>
-                            <p class="text-xs">N/A</p>
-                        </span>
-                    </div>
-                    
-                    <!-- level four -->
-                    <ol class="level-4-wrapper" *ngIf="selectedStageGeneration != 'Starter'">
-                        <!-- level four left child -->
-                        <li>
-                            <div class="level-4 rectangle">
-                                <a 
-                                    [href]="'/system/distributors/' + 
-                                        upLineGeneration?.downLines[1]?.downLines[1]?.downLines[0]?.distributor.username + 
-                                        '/generation/' + selectedStageGeneration"
-                                    *ngIf="upLineGeneration?.downLines[1]?.downLines[1]?.downLines[0]">
-                                    <img [src]="dpPhotoUrl" />
+                                <h5>{{upLineGeneration?.downLines[1]?.downLines[1]?.distributor.username}}</h5>
+                                <p class="text-xs">{{selectedStageGeneration}}</p>
+                                <div class="distributor-info">
                                     <h4>
-                                        {{upLineGeneration?.downLines[1]?.downLines[1]?.downLines[0]?.distributor?.firstName || 'First Name'}} 
-                                        {{upLineGeneration?.downLines[1]?.downLines[1]?.downLines[0]?.distributor?.lastName || 'Last Name'}}
+                                        {{upLineGeneration?.downLines[1]?.downLines[1]?.distributor.firstName || 'First Name'}} 
+                                        {{upLineGeneration?.downLines[1]?.downLines[1]?.distributor.lastName || 'Last Name'}}
                                     </h4>
-                                    <h5>{{upLineGeneration?.downLines[1]?.downLines[1]?.downLines[0]?.distributor?.username}}</h5>
-                                    <p class="text-xs">{{selectedStageGeneration}}</p>
-                                    <div class="distributor-info">
+                                    <p>{{upLineGeneration?.downLines[1]?.downLines[1]?.distributor.username}}</p>
+                                    <p>Current Level: {{upLineGeneration?.downLines[1]?.downLines[1]?.distributor?.stage?.name}}</p>
+                                </div>
+                            </a>
+                            
+                            <span *ngIf="!upLineGeneration?.downLines[1]?.downLines[1]">
+                                <img [src]="unAvailableDownLinePhotoUrl" />
+                                <h4></h4>
+                                <p class="text-xs">N/A</p>
+                            </span>
+                        </div>
+                        
+                        <!-- level four -->
+                        <ol class="level-4-wrapper" *ngIf="selectedStageGeneration != 'Starter'">
+                            <!-- level four left child -->
+                            <li>
+                                <div class="level-4 rectangle">
+                                    <a 
+                                        [href]="'/system/distributors/' + 
+                                            upLineGeneration?.downLines[1]?.downLines[1]?.downLines[0]?.distributor.username + 
+                                            '/generation/' + selectedStageGeneration"
+                                        *ngIf="upLineGeneration?.downLines[1]?.downLines[1]?.downLines[0]">
+                                        <img [src]="dpPhotoUrl" />
                                         <h4>
                                             {{upLineGeneration?.downLines[1]?.downLines[1]?.downLines[0]?.distributor?.firstName || 'First Name'}} 
                                             {{upLineGeneration?.downLines[1]?.downLines[1]?.downLines[0]?.distributor?.lastName || 'Last Name'}}
                                         </h4>
-                                        <p>{{upLineGeneration?.downLines[1]?.downLines[1]?.downLines[0]?.distributor?.username}}</p>
-                                        <p>Current Level: {{upLineGeneration?.downLines[1]?.downLines[0]?.downLines[0]?.distributor?.stage?.name}}</p>
-                                    </div>
-                                </a>
-                                
-                                <span *ngIf="!upLineGeneration?.downLines[1]?.downLines[1]?.downLines[0]">
-                                    <img [src]="unAvailableDownLinePhotoUrl" />
-                                    <h4></h4>
-                                    <p class="text-xs">N/A</p>
-                                </span>
-                            </div>
-                        </li>
-                        <!-- level four right child -->
-                        <li>
-                            <div class="level-4 rectangle">
-                                <a 
-                                    [href]="'/system/distributors/' + 
-                                        upLineGeneration?.downLines[1]?.downLines[1]?.downLines[1]?.distributor.username + 
-                                        '/generation/' + selectedStageGeneration"
-                                    *ngIf="upLineGeneration?.downLines[1]?.downLines[1]?.downLines[1]">
-                                    <img [src]="dpPhotoUrl" />
-                                    <!-- <h4>{{upLineGeneration?.downLines[1]?.downLines[1]?.downLines[1]?.distributor.username}}</h4> -->
-                                    <h4>
-                                        {{upLineGeneration?.downLines[1]?.downLines[1]?.downLines[1]?.distributor?.firstName || 'First Name'}} 
-                                        {{upLineGeneration?.downLines[1]?.downLines[1]?.downLines[1]?.distributor?.lastName || 'Last Name'}}
-                                    </h4>
-                                    <h5>{{upLineGeneration?.downLines[1]?.downLines[1]?.downLines[1]?.distributor?.username}}</h5>
-                                    <p class="text-xs">{{selectedStageGeneration}}</p>
-                                    <div class="distributor-info">
+                                        <h5>{{upLineGeneration?.downLines[1]?.downLines[1]?.downLines[0]?.distributor?.username}}</h5>
+                                        <p class="text-xs">{{selectedStageGeneration}}</p>
+                                        <div class="distributor-info">
+                                            <h4>
+                                                {{upLineGeneration?.downLines[1]?.downLines[1]?.downLines[0]?.distributor?.firstName || 'First Name'}} 
+                                                {{upLineGeneration?.downLines[1]?.downLines[1]?.downLines[0]?.distributor?.lastName || 'Last Name'}}
+                                            </h4>
+                                            <p>{{upLineGeneration?.downLines[1]?.downLines[1]?.downLines[0]?.distributor?.username}}</p>
+                                            <p>Current Level: {{upLineGeneration?.downLines[1]?.downLines[0]?.downLines[0]?.distributor?.stage?.name}}</p>
+                                        </div>
+                                    </a>
+                                    
+                                    <span *ngIf="!upLineGeneration?.downLines[1]?.downLines[1]?.downLines[0]">
+                                        <img [src]="unAvailableDownLinePhotoUrl" />
+                                        <h4></h4>
+                                        <p class="text-xs">N/A</p>
+                                    </span>
+                                </div>
+                            </li>
+                            <!-- level four right child -->
+                            <li>
+                                <div class="level-4 rectangle">
+                                    <a 
+                                        [href]="'/system/distributors/' + 
+                                            upLineGeneration?.downLines[1]?.downLines[1]?.downLines[1]?.distributor.username + 
+                                            '/generation/' + selectedStageGeneration"
+                                        *ngIf="upLineGeneration?.downLines[1]?.downLines[1]?.downLines[1]">
+                                        <img [src]="dpPhotoUrl" />
+                                        <!-- <h4>{{upLineGeneration?.downLines[1]?.downLines[1]?.downLines[1]?.distributor.username}}</h4> -->
                                         <h4>
                                             {{upLineGeneration?.downLines[1]?.downLines[1]?.downLines[1]?.distributor?.firstName || 'First Name'}} 
                                             {{upLineGeneration?.downLines[1]?.downLines[1]?.downLines[1]?.distributor?.lastName || 'Last Name'}}
                                         </h4>
-                                        <p>{{upLineGeneration?.downLines[1]?.downLines[1]?.downLines[1]?.distributor?.username}}</p>
-                                        <p>Current Level: {{upLineGeneration?.downLines[1]?.downLines[1]?.downLines[1]?.distributor?.stage?.name}}</p>
-                                    </div>
-                                </a>
-                                
-                                <span *ngIf="!upLineGeneration?.downLines[1]?.downLines[1]?.downLines[1]">
-                                    <img [src]="unAvailableDownLinePhotoUrl" />
-                                    <h4></h4>
-                                    <p class="text-xs">N/A</p>
-                                </span>
-                            </div>
-                        </li>
-                    </ol>
-                </li>
-            </ol>
-        </li>
-    </ol>
+                                        <h5>{{upLineGeneration?.downLines[1]?.downLines[1]?.downLines[1]?.distributor?.username}}</h5>
+                                        <p class="text-xs">{{selectedStageGeneration}}</p>
+                                        <div class="distributor-info">
+                                            <h4>
+                                                {{upLineGeneration?.downLines[1]?.downLines[1]?.downLines[1]?.distributor?.firstName || 'First Name'}} 
+                                                {{upLineGeneration?.downLines[1]?.downLines[1]?.downLines[1]?.distributor?.lastName || 'Last Name'}}
+                                            </h4>
+                                            <p>{{upLineGeneration?.downLines[1]?.downLines[1]?.downLines[1]?.distributor?.username}}</p>
+                                            <p>Current Level: {{upLineGeneration?.downLines[1]?.downLines[1]?.downLines[1]?.distributor?.stage?.name}}</p>
+                                        </div>
+                                    </a>
+                                    
+                                    <span *ngIf="!upLineGeneration?.downLines[1]?.downLines[1]?.downLines[1]">
+                                        <img [src]="unAvailableDownLinePhotoUrl" />
+                                        <h4></h4>
+                                        <p class="text-xs">N/A</p>
+                                    </span>
+                                </div>
+                            </li>
+                        </ol>
+                    </li>
+                </ol>
+            </li>
+        </ol>
+
+    </div>
 </div>
 
-
-
-<!-- <div  *ngIf="selectedStageGeneration != 'Starter'"  class="container border-2">
-    <div class="level-1 rectangle">        
-        <a href="../">
-            <div>
-                <img [src]="dpPhotoUrl" />
-                <h4>Distributor Name</h4>
-                <p class="text-xs">{{selectedStageGeneration}}</p>
-            </div>
-        </a>
-    </div>
-    <ol class="level-2-wrapper">
-        <li>
-          <div class="level-2 rectangle">
-            <a href="../">
-                <img [src]="dpPhotoUrl" />
-                <p class="text-xs">{{selectedStageGeneration}}</p>
-            </a>
-          </div>
-          <ol class="level-3-wrapper">
-            <li>
-                <div class="level-3 rectangle">
-                  <a href="../">
-                      <img [src]="dpPhotoUrl" />
-                      <p class="text-xs">{{selectedStageGeneration}}</p>
-                  </a>
-                </div>
-                <ol class="level-4-wrapper">
-                  <li>
-                      <div class="level-4 rectangle">
-                        <a href="../">
-                            <img [src]="dpPhotoUrl" />
-                            <p class="text-xs">{{selectedStageGeneration}}</p>
-                        </a>
-                      </div>
-                  </li>
-                  <li>
-                      <div class="level-4 rectangle">
-                        <a href="../">
-                            <img [src]="dpPhotoUrl" />
-                            <p class="text-xs">{{selectedStageGeneration}}</p>
-                        </a>
-                      </div>
-                  </li>
-                </ol>
-            </li>
-            <li>
-                <div class="level-3 rectangle">
-                  <a href="../">
-                      <img [src]="dpPhotoUrl" />
-                      <p class="text-xs">{{selectedStageGeneration}}</p>
-                  </a>
-                </div>               
-                      
-                <ol class="level-4-wrapper">
-                    <li>
-                        <div class="level-4 rectangle">
-                        <a href="../">
-                            <img [src]="dpPhotoUrl" />
-                            <p class="text-xs">{{selectedStageGeneration}}</p>
-                        </a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="level-4 rectangle">
-                        <a href="../">
-                            <img [src]="dpPhotoUrl" />
-                            <p class="text-xs">{{selectedStageGeneration}}</p>
-                        </a>
-                        </div>
-                    </li>
-                </ol>
-            </li>
-          </ol>
-        </li>
-        <li>
-            <div class="level-2 rectangle">
-              <a href="../">
-                  <img [src]="dpPhotoUrl" />
-                  <p class="text-xs">{{selectedStageGeneration}}</p>
-              </a>
-            </div>
-            <ol class="level-3-wrapper">
-                <li>
-                <div class="level-3 rectangle">
-                    <a href="../">
-                        <img [src]="dpPhotoUrl" />
-                        <p class="text-xs">{{selectedStageGeneration}}</p>
-                    </a>
-                </div>
-                
-                    <ol class="level-4-wrapper">
-                        <li>
-                            <div class="level-4 rectangle">
-                            <a href="../">
-                                <img [src]="dpPhotoUrl" />
-                                <p class="text-xs">{{selectedStageGeneration}}</p>
-                            </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="level-4 rectangle">
-                            <a href="../">
-                                <img [src]="dpPhotoUrl" />
-                                <p class="text-xs">{{selectedStageGeneration}}</p>
-                            </a>
-                            </div>
-                        </li>
-                    </ol>
-                </li>
-                <li>
-                    <div class="level-3 rectangle">
-                    <a href="../">
-                        <img [src]="dpPhotoUrl" />
-                        <p class="text-xs">{{selectedStageGeneration}}</p>
-                    </a>
-                </div>
-
-                
-                    <ol class="level-4-wrapper">
-                        <li>
-                            <div class="level-4 rectangle">
-                            <a href="../">
-                                <img [src]="dpPhotoUrl" />
-                                <p class="text-xs">{{selectedStageGeneration}}</p>
-                            </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="level-4 rectangle">
-                            <a href="../">
-                                <img [src]="dpPhotoUrl" />
-                                <p class="text-xs">{{selectedStageGeneration}}</p>
-                            </a>
-                            </div>
-                        </li>
-                    </ol>
-                </li>
-            </ol>
-        </li>
-    </ol>
-</div> -->
-
-<!-- <div class="container">
-    <h1 class="level-1 rectangle">First Level</h1>
-    <ol class="level-2-wrapper">
-        <li>
-          <h2 class="level-2 rectangle">Level 2</h2>
-          <ol class="level-3-wrapper">
-            <li>
-              <h3 class="level-3 rectangle">Level 3</h3>
-            </li>
-            <li>
-              <h3 class="level-3 rectangle">Level 3</h3>
-            </li>
-          </ol>
-        </li>
-        <li>
-          <h2 class="level-2 rectangle">Level 2</h2>
-          <ol class="level-3-wrapper">
-            <li>
-              <h3 class="level-3 rectangle">Level 3</h3>
-            </li>
-            <li>
-              <h3 class="level-3 rectangle">Level 3</h3>
-            </li>
-          </ol>
-        </li>
-    </ol>
-</div> -->
-
-<!-- <div class="bg-gray-100 w-full h-full">
-    <ul class="flex items-center justify-center">
-        <li *ngFor="let distributor of generationDownLines">
-            <app-generation-item [distributor]="distributor"
-                [selectedStage]="selectedStageGeneration"></app-generation-item>
-        </li>
-    </ul>
-</div> -->

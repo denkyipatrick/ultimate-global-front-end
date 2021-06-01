@@ -87,7 +87,8 @@
                         <p>@{{distributor?.username}}</p>
                     </span>
 
-                    <div class="flex items-start space-x-24">
+                    <div class="block sm:flex sm:items-start sm:space-x-24
+                        space-y-4 sm:space-y-0">
                         <span class="block space-y-2">
                             <p class="text-sm font-medium text-gray-500">
                                 Date Registered
@@ -222,7 +223,7 @@
             <button mat-raised-button (click)="toggleBankForm()">Edit Bank Details</button>
         </span>
 
-        <section class="grid grid-cols-3 gap-8 relative">
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative">
             <div class="bg-white shadow-md rounded-md p-6">
                 <p class="font-light">Bank Name</p>
                 <p class="text-lg">{{distributor?.bankName}}</p>
@@ -238,10 +239,9 @@
         </section>
 
         <section *ngIf="isShowBankForm">
-            <form [formGroup]="bankDetailForm" style="width: 400px;" 
-                class="mx-auto bg-white 
-                p-4 space-y-2 shadow-md" autocomplete="off"
-                (ngSubmit)="saveBankDetails()">
+            <form [formGroup]="bankDetailForm" style="width: 400px; max-width: 100%;" 
+                class="mx-auto bg-white p-4 space-y-2 shadow-md"
+                autocomplete="off" (ngSubmit)="saveBankDetails()">
                 <h2>Change Bank Details</h2>
                 <mat-form-field appearance="outline" class="block w-full">
                     <mat-label>Bank Name</mat-label>

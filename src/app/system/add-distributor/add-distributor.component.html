@@ -1,10 +1,9 @@
-<div style="width: 500px; max-width: 100%;">
+<div style="width: 500px; max-width: 100%;" class="mx-auto lg:mx-0">
     <p class="text-3xl font-light">Create Distributor</p>
     <mat-card>
         <form [formGroup]="form" (ngSubmit)="addDistributor()" autocomplete="off">
             <div class="space-y-2">
-                <span class="flex items-center 
-                    justify-between space-x-6">
+                <span class="grid md:grid-cols-2 gap-4">
                     <mat-form-field class="w-full">
                         <mat-label>First Name</mat-label>
                         <input matInput 
@@ -20,8 +19,7 @@
                     </mat-form-field>
                 </span>
 
-                <span class="flex items-center 
-                    justify-between space-x-6">
+                <span class="grid md:grid-cols-2 gap-4">
                     <mat-form-field class="w-full">
                         <mat-label>Username</mat-label>
                         <input matInput 
@@ -49,8 +47,7 @@
                         formControlName="email" />
                 </mat-form-field>
 
-                <span class="flex items-center 
-                    justify-between space-x-6">
+                <span class="grid md:grid-cols-2 gap-4">
                     <mat-form-field class="w-full">
                         <mat-label>Phone Number</mat-label>
                         <input matInput 
@@ -69,8 +66,7 @@
                     </mat-form-field>
                 </span>
 
-                <span class="flex items-center 
-                    justify-between space-x-6">
+                <span class="grid md:grid-cols-2 gap-4">
                     <mat-form-field class="w-full">
                         <mat-label>Sponsor Username</mat-label>
                         <input matInput 
@@ -87,8 +83,7 @@
                     </mat-form-field>
                 </span>
                 
-                <span class="flex items-center 
-                    justify-between space-x-6">
+                <span class="grid md:grid-cols-2 gap-4">
                     <mat-form-field class="w-full">
                         <mat-label>Select Country</mat-label>
                         <mat-select required formControlName="country">
@@ -115,16 +110,18 @@
                 <p class="text-red-600 font-medium">
                     {{errorMessage}}
                 </p>
-                <span>
-                    <mat-checkbox #confirmCheckbox>
+                <span class="flex items-start text-left justify-center
+                text-xs sm:text-sm space-x-2">
+                    <mat-checkbox #confirmCheckbox color="warn"></mat-checkbox>
+                    <p class="break-words cursor-pointer" (click)="confirmCheckbox.checked = !confirmCheckbox.checked">
                         I accept the Terms and Conditions. 
                         Click <a>here</a> to read more.
-                    </mat-checkbox>
+                    </p>
                 </span>
                 <button 
                     mat-raised-button 
                     color="primary"
-                    [disabled]="!confirmCheckbox.checked">
+                    [disabled]="!confirmCheckbox.checked || form.invalid">
                     <span *ngIf="!isCreatingDistributor">
                         ADD DISTRIBUTOR
                     </span>
