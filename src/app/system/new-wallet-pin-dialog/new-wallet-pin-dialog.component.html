@@ -1,0 +1,45 @@
+
+<section style="width: 350px; max-width: 100%;" class="space-y-4">
+    <header>
+        <span>
+            <p class="text-lg">Set Wallet Pin</p>
+        </span>
+    </header>
+    <section>
+        <section>
+            <form [formGroup]="form">
+                <section>
+                    <mat-form-field class="w-full">
+                        <mat-label>Enter a 4-Digit Pin</mat-label>
+                        <input matInput type="password"
+                            formControlName="pin" maxlength="3" />
+                    </mat-form-field>
+                </section>
+
+                <section>
+                    <div class="flex items-start justify-between space-x-4">
+                        <div class="w-full">
+                            <p class="w-8/12 text-red-600
+                                font-medium text-sm">                            
+                                <span class="block">{{networkErrorMessage}}</span>
+                            </p>
+                            <ul class="list-disc w-full">
+                                <li *ngFor="let message of validationErrorMessages"
+                                    class="text-xs block text-red-700">
+                                    <span>{{message}}</span>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <button mat-raised-button class="w-4/12"
+                            [disabled]="isWorking || form.invalid"
+                            color="primary" (click)="setPin()">
+                            <span *ngIf="!isWorking">SAVE PIN</span>
+                            <span *ngIf="isWorking">PLEASE WAIT...</span>
+                        </button>
+                    </div>
+                </section>
+            </form>
+        </section>
+    </section>
+</section>

@@ -1,0 +1,17 @@
+
+<div>
+    <span class="flex items-center space-x-3">
+        <mat-icon>info</mat-icon>
+        <p class="text-lg font-medium">{{data?.title}}</p>
+    </span>
+    <p style="margin: 1rem 0;" class="my-4">
+        {{data?.message}}
+    </p>
+    <div class="text-right">
+        <span class="space-x-2">
+            <button mat-button (click)="_close()">
+                {{data?.okButtonText || 'OK'}}
+            </button>
+        </span>
+    </div>
+</div>

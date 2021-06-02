@@ -58,17 +58,8 @@
                         </button>
 
                         <mat-menu #menu>
-                            <button mat-menu-item>
-                                <span class="flex items-center space-x-2 md:hidden">
-                                    <mat-icon>money</mat-icon> 
-                                    <p class="font-light">
-                                        ${{loggedInDistributor?.wallet?.balance?.toFixed(2)}}
-                                    </p>
-                                </span>
-                            </button>
-                            <button mat-menu-item>
-                                <a href="/sign-in" mat-menu-item>Sign Out</a>
-                            </button>
+                            <button mat-menu-item></button>
+                            <a href="/sign-in" mat-menu-item>Sign Out</a>
                         </mat-menu>
                     </span>
                 </div>
@@ -77,8 +68,8 @@
     </section>
 </header>
 
-<mat-drawer-container class="row mx-auto" style="height: 90vh;">
-    <mat-drawer opened mode="side" class="w-0 lg:w-3/12 sm:hidden">
+<mat-drawer-container class="row bg-gray-50 mx-auto overflow-y-hidden" style="height: 90vh;">
+    <mat-drawer opened mode="side" class="w-0 lg:w-3/12 hidden md:block">
         <div class="h-full p-4 text-black">
             <mat-accordion>
                 <mat-expansion-panel [expanded]="true">
@@ -152,11 +143,8 @@
         </div>
     </mat-drawer>
     <mat-drawer-content class="bg-white">
-        <div class="bg-gray-50 w-full p-4">
+        <div class="p-4">
             <router-outlet></router-outlet>
         </div>
     </mat-drawer-content>
 </mat-drawer-container>
-<!-- 
-<div class="flex items-stretch h-full">    
-</div> -->

@@ -34,6 +34,8 @@ import { OkCancelDialogComponent } from './ok-cancel-dialog/ok-cancel-dialog.com
 import { ProfileDetailComponent } from './profile-detail/profile-detail.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MessagingComponent } from './messaging/messaging.component';
+import { NewWalletPinDialogComponent } from './new-wallet-pin-dialog/new-wallet-pin-dialog.component';
+import { OkDialogComponent } from './ok-dialog/ok-dialog.component';
 
 
 @NgModule({
@@ -52,7 +54,9 @@ import { MessagingComponent } from './messaging/messaging.component';
     NewTransferComponent,
     OkCancelDialogComponent,
     ProfileDetailComponent,
-    MessagingComponent
+    MessagingComponent,
+    NewWalletPinDialogComponent,
+    OkDialogComponent
   ],
   imports: [
     CommonModule,
