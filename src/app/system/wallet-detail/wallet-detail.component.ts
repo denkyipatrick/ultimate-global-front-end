@@ -4,6 +4,7 @@ import { DistributorService } from './../../services/distributor.service';
 import { Component, OnInit } from '@angular/core';
 import { NewWalletPinDialogComponent } from '../new-wallet-pin-dialog/new-wallet-pin-dialog.component';
 import { OkDialogComponent } from '../ok-dialog/ok-dialog.component';
+import { ChangeWalletPinDialogComponent } from '../change-wallet-pin-dialog/change-wallet-pin-dialog.component';
 
 @Component({
   selector: 'app-wallet-detail',
@@ -32,7 +33,7 @@ export class WalletDetailComponent implements OnInit {
     return new Date(millis).toDateString();
   }
 
-  changePin() {
+  setPin() {
     this.dialogOpener.open(NewWalletPinDialogComponent, {
       data: {
         walletId: this.distributorService.distributor.wallet.id
@@ -50,8 +51,38 @@ export class WalletDetailComponent implements OnInit {
           title: "Wallet Pin Set",
           message: "You have successfully set a pin on your wallet."
         }
-      })
+      });
     });
+  }
+
+  changePin() {
+    this.dialogOpener.open(ChangeWalletPinDialogComponent, {
+      data: {
+        walletId: this.wallet.id
+      }
+    })
+    .componentInstance
+    .pinChanged
+    .subscribe(newPin => {
+      this.wallet.pin = newPin;
+      this.distributorService.distributor.wallet = this.wallet;
+      localStorage.setItem('distributor', JSON.stringify(this.distributorService.distributor));
+
+      this.dialogOpener.open(OkDialogComponent, {
+        data: {
+          title: "Wallet Pin Changed",
+          message: "You have successfully changed your wallet's pin."
+        }
+      });
+    })
+  }
+
+  updatePin() {
+    if (!this.wallet.pin) {
+      this.setPin();
+    } else {
+      this.changePin();
+    }
   }
 
   fetchWalletTransactions() {

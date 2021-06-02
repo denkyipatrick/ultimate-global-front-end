@@ -4,7 +4,7 @@
         <span class="flex items-center justify-between space-x-4">
             <p class="text-xl font-light mb-6">Wallet Info</p>
             <button mat-raised-button color="primary"
-                (click)="changePin()">
+                (click)="updatePin()">
                 <span *ngIf="wallet && wallet?.pin">CHANGE PIN</span>
                 <span *ngIf="wallet && !wallet?.pin">SET WALLET PIN</span>
             </button>

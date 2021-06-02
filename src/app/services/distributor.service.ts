@@ -45,6 +45,10 @@ export class DistributorService {
   setWalletPin(walletId: string, data: any) {
     return this.http.patch<any>(`${this.constants.WALLETS_URL}/${walletId}/set-pin`, data);
   }
+  
+  changeWalletPin(walletId: string, data: any) {
+    return this.http.patch<any>(`${this.constants.WALLETS_URL}/${walletId}/change-pin`, data);
+  }
 
   fetchNotifications() {
     return this.http.get<any>(`${this.constants.DISTRIBUTORS_URL}/` +

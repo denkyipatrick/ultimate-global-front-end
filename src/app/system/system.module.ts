@@ -36,6 +36,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MessagingComponent } from './messaging/messaging.component';
 import { NewWalletPinDialogComponent } from './new-wallet-pin-dialog/new-wallet-pin-dialog.component';
 import { OkDialogComponent } from './ok-dialog/ok-dialog.component';
+import { ChangeWalletPinDialogComponent } from './change-wallet-pin-dialog/change-wallet-pin-dialog.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { OkDialogComponent } from './ok-dialog/ok-dialog.component';
     ProfileDetailComponent,
     MessagingComponent,
     NewWalletPinDialogComponent,
-    OkDialogComponent
+    OkDialogComponent,
+    ChangeWalletPinDialogComponent
   ],
   imports: [
     CommonModule,
