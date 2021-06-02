@@ -11,10 +11,13 @@ import * as moment from 'moment';
 })
 export class DashboardComponent implements OnInit {
   levels: any[];
-  distributor: any;
   latestNews: any;
+  distributor: any;
   lastLoggedIn: string;
   recentDownLines: any[];
+  totalDownLinesCount: number = 0;
+  totalLeftDownLinesCount: number = 0;
+  totalRightDownLinesCount: number = 0;
 
   loggedInDistributor: any;
   generationDownLines: any[];
@@ -34,6 +37,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.fetchRecentDownLines();
     this.getDistributorLevels();
+    this.fetchTotalDownLinesCount();
   }
 
   fetchRecentDownLines() {
@@ -43,6 +47,16 @@ export class DashboardComponent implements OnInit {
       sessionStorage.setItem('recent-joining', JSON.stringify(downLines));
     }, error => {
 
+    });
+  }
+
+  fetchTotalDownLinesCount() {
+    this.distributorService.fetchLeftRightTotalDownLinesCounts()
+    .subscribe(data => {
+      console.log(data);
+      this.totalDownLinesCount = data.totalCount;
+      this.totalLeftDownLinesCount = data.leftCount;
+      this.totalRightDownLinesCount = data.rightCount;
     });
   }
 

@@ -43,6 +43,51 @@
             <p>{{distributor?.stage?.name}}</p>
         </div>
     </section>
+    
+    <section class="p-4 bg-white shadow-md rounded-md space-y-4">
+        <p class="text-lg font-medium">Downlines Summary</p>
+        <div class="space-y-4">
+            <p class="border-b pb-2">
+                <span class="block text-lg">Total Joining: {{totalDownLinesCount}}</span>
+            </p>
+            <div class="grid md:grid-cols-2 gap-x-8 gap-y-4">
+                <p>
+                    <span class="block text-lg">Total Left Joining</span>
+                    <span class="block text-xl font-medium">{{totalLeftDownLinesCount}}</span>
+                </p>
+                <p>
+                    <span class="block text-lg">Total Right Joining</span>
+                    <span class="block text-xl font-medium">{{totalRightDownLinesCount}}</span>
+                </p>
+            </div>
+            <!-- <div class="border-b py-2 flex items-center space-x-4">
+                <mat-icon>account_circle</mat-icon>
+                <span>
+                    <p class="text-black text-sm">
+                        {{downLine?.distributor?.firstName}} {{downLine?.distributor?.firstName}}
+                    </p>
+                    <p class="text-gray-400 text-xs">
+                        @{{downLine?.distributor?.username}}
+                    </p>
+                </span>
+            </div> -->
+            <ul class="hidden">
+                <li *ngFor="let downLine of recentDownLines">
+                    <div class="border-b py-2 flex items-center space-x-4">
+                        <mat-icon>account_circle</mat-icon>
+                        <span>
+                            <p class="text-black text-sm">
+                                {{downLine?.distributor?.firstName}} {{downLine?.distributor?.firstName}}
+                            </p>
+                            <p class="text-gray-400 text-xs">
+                                @{{downLine?.distributor?.username}}
+                            </p>
+                        </span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
 
     <section class="p-4 bg-white shadow-md rounded-md">
         <p class="text-lg font-medium">Recent Downlines Joining</p>

@@ -55,6 +55,11 @@ export class DistributorService {
     `${this.distributor.username}/recent-downlines`);
   }
 
+  fetchLeftRightTotalDownLinesCounts() {
+    return this.http.get<any>(`${this.constants.DISTRIBUTORS_URL}/` + 
+    `${this.distributor.username}/total-downlines`);    
+  }
+
   fetchNotifications() {
     return this.http.get<any>(`${this.constants.DISTRIBUTORS_URL}/` +
     `${this.distributor.username}/notifications`);
