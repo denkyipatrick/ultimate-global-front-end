@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { DistributorService } from './../../services/distributor.service';
 import { UtilityService } from './../../services/utility.service';
 import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,6 +13,7 @@ export class DashboardComponent implements OnInit {
   levels: any[];
   distributor: any;
   latestNews: any;
+  lastLoggedIn: string;
 
   loggedInDistributor: any;
   generationDownLines: any[];
@@ -23,6 +25,8 @@ export class DashboardComponent implements OnInit {
     this.distributor = this.distributorService.distributor;
     this.loggedInDistributor = distributorService.distributor;
     this.latestNews = JSON.parse(localStorage.getItem('latest-news'));
+
+    this.lastLoggedIn =  moment(this.loggedInDistributor.lastLogin).format("Do MMM YYYY hh:mm a");
   }
 
   ngOnInit(): void {

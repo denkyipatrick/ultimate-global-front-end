@@ -2,7 +2,17 @@
 <h1 class="text-gray-500">Dashboard</h1>
 
 <section>
-    <p  style="margin-bottom: 1rem;">Distributor Info</p>
+    <section class="flex items-start justify-between">
+        <p  style="margin-bottom: 1rem;"
+            class="text-lg">
+            Distributor Info
+        </p>
+
+        <p class="text-right">
+            <span class="block text-sm">Last Logged In</span>
+            <span class="block text-gray-400 text-xs">{{lastLoggedIn || 'now'}}</span>
+        </p>
+    </section>
 
     <section class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mb-4 pb-2">
         <div class="p-4 bg-white shadow-md rounded-md">

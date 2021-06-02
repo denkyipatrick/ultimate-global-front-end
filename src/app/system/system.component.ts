@@ -23,6 +23,7 @@ export class SystemComponent implements OnInit {
     private distributorService: DistributorService
     ) {
     this.loggedInDistributor = distributorService.distributor;
+    console.log(this.loggedInDistributor);
   }
 
   ngOnInit(): void {
