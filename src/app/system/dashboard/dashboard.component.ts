@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
   distributor: any;
   latestNews: any;
   lastLoggedIn: string;
+  recentDownLines: any[];
 
   loggedInDistributor: any;
   generationDownLines: any[];
@@ -26,11 +27,23 @@ export class DashboardComponent implements OnInit {
     this.loggedInDistributor = distributorService.distributor;
     this.latestNews = JSON.parse(localStorage.getItem('latest-news'));
 
+    this.recentDownLines = JSON.parse(sessionStorage.getItem('recent-joining'));
     this.lastLoggedIn =  moment(this.loggedInDistributor.lastLogin).format("Do MMM YYYY hh:mm a");
   }
 
   ngOnInit(): void {
+    this.fetchRecentDownLines();
     this.getDistributorLevels();
+  }
+
+  fetchRecentDownLines() {
+    this.distributorService.fetchRecentDownLines()
+    .subscribe(downLines => {
+      this.recentDownLines = downLines;
+      sessionStorage.setItem('recent-joining', JSON.stringify(downLines));
+    }, error => {
+
+    });
   }
 
   getDistributorLevels() {

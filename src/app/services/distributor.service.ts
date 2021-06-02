@@ -50,6 +50,11 @@ export class DistributorService {
     return this.http.patch<any>(`${this.constants.WALLETS_URL}/${walletId}/change-pin`, data);
   }
 
+  fetchRecentDownLines(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.constants.DISTRIBUTORS_URL}/` + 
+    `${this.distributor.username}/recent-downlines`);
+  }
+
   fetchNotifications() {
     return this.http.get<any>(`${this.constants.DISTRIBUTORS_URL}/` +
     `${this.distributor.username}/notifications`);

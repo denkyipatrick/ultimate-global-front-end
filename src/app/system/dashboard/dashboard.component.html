@@ -1,7 +1,7 @@
 
 <h1 class="text-gray-500">Dashboard</h1>
 
-<section>
+<section class="space-y-4">
     <section class="flex items-start justify-between">
         <p  style="margin-bottom: 1rem;"
             class="text-lg">
@@ -41,6 +41,27 @@
         <div>
             <p>Current Stage</p>
             <p>{{distributor?.stage?.name}}</p>
+        </div>
+    </section>
+
+    <section class="p-4 bg-white shadow-md rounded-md">
+        <p class="text-lg font-medium">Recent Downlines Joining</p>
+        <div>
+            <ul>
+                <li *ngFor="let downLine of recentDownLines">
+                    <div class="border-b py-2 flex items-center space-x-4">
+                        <mat-icon>account_circle</mat-icon>
+                        <span>
+                            <p class="text-black text-sm">
+                                {{downLine?.distributor?.firstName}} {{downLine?.distributor?.firstName}}
+                            </p>
+                            <p class="text-gray-400 text-xs">
+                                @{{downLine?.distributor?.username}}
+                            </p>
+                        </span>
+                    </div>
+                </li>
+            </ul>
         </div>
     </section>
 
